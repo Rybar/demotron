@@ -93,7 +93,7 @@ header.site .tag { font-size: 0.95rem; color: var(--ink-soft); }
   padding: 2px 8px; font: 400 1.25rem/1.2 var(--pixel); letter-spacing: 0.01em;
 }
 .titlebar .tb-title { flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.win-body { padding: 18px clamp(16px, 4vw, 34px) 22px; }
+.win-body { padding: 18px clamp(16px, 4vw, 34px) 22px; overflow-x: auto; }
 
 /* ---- buttons */
 .px-btn, .controls button, button.copy, div.embed button {
@@ -128,7 +128,7 @@ h1 { font: 400 clamp(2.6rem, 6.5vw, 4rem)/1 var(--pixel); margin: 0.15em 0 0.15e
 }
 
 /* ---- slideshow lessons: code window left, demo window right */
-.workbench { display: grid; grid-template-columns: minmax(340px, 470px) minmax(0, 960px); gap: 20px; justify-content: center; margin: 22px 0 10px; }
+.workbench { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(0, 960px); gap: 20px; justify-content: center; margin: 22px 0 10px; }
 .workbench > * { min-width: 0; }
 .codepane { position: relative; min-height: 0; }
 .codepane-inner { position: absolute; inset: 0; display: flex; flex-direction: column; }
@@ -155,8 +155,8 @@ pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
 .slider input { accent-color: #ffec27; width: 100%; }
 .slider output { color: #ffec27; text-align: right; }
 
-.cartwin { overflow: hidden; }
-.cart { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; background: #000; }
+.cartwin { overflow: hidden; width: fit-content; }   /* shrink-wraps the cart, which pixelfit.js sizes */
+.cart { position: relative; width: 480px; height: 270px; background: #000; }   /* pixelfit.js picks the whole-number scale */
 .cart iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; }
 .controls button { font-size: 1.6rem; padding: 0 18px; }
@@ -167,7 +167,7 @@ pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
 /* numbers in a plain bold mono: Pixelify's 5 reads like an S */
 .caption h2 .num { border-radius: 3px; display: inline-block; min-width: 1.6em; text-align: center; margin-right: 0.3em; font: 700 0.6em/1.5 var(--mono); vertical-align: 0.2em;
   background: var(--yellow); color: #000; }
-.caption figure.shot { width: 100%; margin: 1.2em 0; transform: none; }
+.caption figure.shot { margin: 1.2em 0; }
 
 /* ---- "Try this": a yellow note */
 .try {
@@ -187,15 +187,18 @@ pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
 .win-body ol > li::marker { font-family: var(--pixel); color: var(--magenta); }
 
 /* ---- article lessons */
-article.article .paper { max-width: 860px; margin: 22px auto 0; }
+/* wide enough for a 2x (960px) Picotron screen; the text keeps its 720px column */
+article.article .paper { max-width: 1040px; margin: 22px auto 0; }
 .article-section { max-width: 720px; margin: 0 auto; }
 .article-section h2 { font: 400 2.2rem/1.1 var(--pixel); margin: 1.3em 0 0.35em; }
 .article-section:first-child h2 { margin-top: 0.2em; }
 .article-section h3 { font: 400 1.6rem/1.1 var(--pixel); margin: 1.1em 0 0.3em; }
-figure.shot, div.embed { width: min(800px, calc(100vw - 64px)); margin: 1.6em 0 1.6em 50%; transform: translateX(-50%); }
-figure.shot img { border-radius: var(--r); display: block; width: 100%; height: auto; image-rendering: pixelated; background: #000; }
+/* pixelfit.js sizes these to 480x270 x a whole number and places them; until it runs
+   they sit at 1x, which is always a correct scale */
+figure.shot, div.embed { width: 480px; margin: 1.6em 0; }
+figure.shot img { border-radius: var(--r); display: block; max-width: 100%; height: auto; image-rendering: pixelated; background: #000; }
 figure.shot figcaption { font-size: 0.92rem; color: var(--ink-soft); margin-top: 0.6em; text-align: center; }
-div.embed { border-radius: var(--r); aspect-ratio: 16 / 9; max-width: 100%; background: #0f1424; position: relative; overflow: hidden;
+div.embed { border-radius: var(--r); height: 270px; background: #0f1424; position: relative; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: #c2c3c7; }
 div.embed button { font-size: 1.5rem; padding: 4px 24px; }
 div.embed span { font-size: 0.95rem; }

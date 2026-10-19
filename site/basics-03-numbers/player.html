@@ -1155,10 +1155,13 @@ p8_update_layout();
 (function () {
   var sheet = document.createElement("style");
   document.head.appendChild(sheet);
+  // whole-number scales only, counted in device pixels: never squash or stretch the screen
   function layout() {
-    var vw = window.innerWidth, vh = window.innerHeight;
-    var s = Math.min(vw / 480, vh / 270), w = 480 * s, h = 270 * s;
-    sheet.textContent = "#canvas{left:" + (vw - w) / 2 + "px !important;top:" + (vh - h) / 2 +
+    var vw = window.innerWidth, vh = window.innerHeight, r = window.devicePixelRatio || 1;
+    var n = Math.max(1, Math.floor(Math.min(vw * r / 480, vh * r / 270)));
+    var w = 480 * n / r, h = 270 * n / r;
+    var x = Math.max(0, Math.round((vw - w) / 2 * r) / r), y = Math.max(0, Math.round((vh - h) / 2 * r) / r);
+    sheet.textContent = "#canvas{left:" + x + "px !important;top:" + y +
       "px !important;width:" + w + "px !important;height:" + h + "px !important}";
   }
   // the shell runs p8_update_layout every animation frame: make it ours
