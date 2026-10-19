@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Making decisions · Demotron</title>
+<meta name="description" content="Ask questions about what&#x27;s happening in the game, and let the answers decide what it does next.">
+<link rel="stylesheet" href="../static/demotron.css">
+</head>
+<body class="wide">
+<header class="site"><a href="../index.html" class="brand">Demotron</a><span class="tag">interactive Picotron lessons</span></header>
+<main>
+
+<article class="lesson">
+  <h1>Making decisions</h1>
+  <p class="summary">Ask questions about what's happening in the game, and let the answers decide what it does next.</p>
+  <div class="workbench">
+    <div class="codepane"><div class="codepane-inner">
+      <div class="code" data-slide="1" hidden><div class="codehead"><span class="file">demos/1_compare.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- comparisons answer true or false</span></span>
+<span class="line dim"><span class="ln">2</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line dim"><span class="ln">3</span>speed<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line dim"><span class="ln">4</span></span>
+<span class="line dim"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span>speed<span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>speed<span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span>speed<span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>speed<span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">10</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">11</span></span>
+<span class="line dim"><span class="ln">12</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">269</span><span class="op">,</span><span class="op"> </span><span class="num">13</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;x = &quot;</span><span class="op">.</span><span class="op">.</span>x<span class="op">,</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;x &gt; 240   &quot;</span><span class="op">.</span><span class="op">.</span><span class="bi">tostr</span><span class="op">(</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">240</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">36</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;x == 240  &quot;</span><span class="op">.</span><span class="op">.</span><span class="bi">tostr</span><span class="op">(</span>x<span class="op"> </span><span class="op">=</span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">48</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;x != 240  &quot;</span><span class="op">.</span><span class="op">.</span><span class="bi">tostr</span><span class="op">(</span>x<span class="op"> </span><span class="op">!</span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">60</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">20</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- comparisons answer true or false
+x, y = 240, 135
+speed = 2
+
+function _update()
+	if btn(0) then x -= speed end
+	if btn(1) then x += speed end
+	if btn(2) then y -= speed end
+	if btn(3) then y += speed end
+end
+
+function _draw()
+	cls(1)
+	line(240, 0, 240, 269, 13)
+	circfill(x, y, 8, 12)
+	print(&quot;x = &quot;..x, 16, 16, 7)
+	print(&quot;x &gt; 240   &quot;..tostr(x &gt; 240), 16, 36, 6)
+	print(&quot;x == 240  &quot;..tostr(x == 240), 16, 48, 6)
+	print(&quot;x != 240  &quot;..tostr(x != 240), 16, 60, 6)
+end
+</textarea></div>
+      <div class="code" data-slide="2" hidden><div class="codehead"><span class="file">demos/2_edges.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- move first, then put the circle back</span></span>
+<span class="line dim"><span class="ln">2</span><span class="com">-- if it went too far</span></span>
+<span class="line dim"><span class="ln">3</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line dim"><span class="ln">4</span></span>
+<span class="line dim"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="com">-- keep it on screen</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">471</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">471</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">261</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">261</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">15</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">16</span></span>
+<span class="line dim"><span class="ln">17</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">20</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- move first, then put the circle back
+-- if it went too far
+x, y = 240, 135
+
+function _update()
+	if btn(0) then x -= 2 end
+	if btn(1) then x += 2 end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+	-- keep it on screen
+	if x &lt; 8 then x = 8 end
+	if x &gt; 471 then x = 471 end
+	if y &lt; 8 then y = 8 end
+	if y &gt; 261 then y = 261 end
+end
+
+function _draw()
+	cls(1)
+	circfill(x, y, 8, 12)
+end
+</textarea></div>
+      <div class="code" data-slide="3" hidden><div class="codehead"><span class="file">demos/3_mid.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- mid() keeps a number between two others</span></span>
+<span class="line dim"><span class="ln">2</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line dim"><span class="ln">3</span></span>
+<span class="line dim"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="com">-- keep it on screen</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span><span class="num">471</span><span class="op">)</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">261</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">12</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">13</span></span>
+<span class="line dim"><span class="ln">14</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">17</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- mid() keeps a number between two others
+x, y = 240, 135
+
+function _update()
+	if btn(0) then x -= 2 end
+	if btn(1) then x += 2 end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+	-- keep it on screen
+	x = mid(8, x, 471)
+	y = mid(8, y, 261)
+end
+
+function _draw()
+	cls(1)
+	circfill(x, y, 8, 12)
+end
+</textarea></div>
+      <div class="code" data-slide="4" hidden><div class="codehead"><span class="file">demos/4_else.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- the colour depends on which third</span></span>
+<span class="line dim"><span class="ln">2</span><span class="com">-- of the screen the circle is in</span></span>
+<span class="line dim"><span class="ln">3</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line dim"><span class="ln">4</span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">11</span></span>
+<span class="line dim"><span class="ln">5</span></span>
+<span class="line dim"><span class="ln">6</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">11</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">160</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="kw">elseif</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">320</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">11</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">else</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">12</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">19</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">20</span></span>
+<span class="line dim"><span class="ln">21</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span><span class="num">160</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="num">160</span><span class="op">,</span><span class="op"> </span><span class="num">269</span><span class="op">,</span><span class="op"> </span><span class="num">13</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span><span class="num">320</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="num">320</span><span class="op">,</span><span class="op"> </span><span class="num">269</span><span class="op">,</span><span class="op"> </span><span class="num">13</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line dim"><span class="ln">26</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- the colour depends on which third
+-- of the screen the circle is in
+x, y = 240, 135
+col = 11
+
+function _update()
+	if btn(0) then x -= 2 end
+	if btn(1) then x += 2 end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+
+	if x &lt; 160 then
+		col = 8
+	elseif x &lt; 320 then
+		col = 11
+	else
+		col = 12
+	end
+end
+
+function _draw()
+	cls(1)
+	line(160, 0, 160, 269, 13)
+	line(320, 0, 320, 269, 13)
+	circfill(x, y, 8, col)
+end
+</textarea></div>
+      <div class="code" data-slide="5" hidden><div class="codehead"><span class="file">demos/5_and.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- the box lights up while the circle is in it</span></span>
+<span class="line dim"><span class="ln">2</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">100</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line dim"><span class="ln">3</span>left<span class="op">,</span><span class="op"> </span>right<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">180</span><span class="op">,</span><span class="op"> </span><span class="num">300</span></span>
+<span class="line dim"><span class="ln">4</span>top<span class="op">,</span><span class="op"> </span>bottom<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">80</span><span class="op">,</span><span class="op"> </span><span class="num">190</span></span>
+<span class="line dim"><span class="ln">5</span></span>
+<span class="line dim"><span class="ln">6</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">11</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">12</span></span>
+<span class="line dim"><span class="ln">13</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">5</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span>left<span class="op"> </span><span class="kw">and</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span>right</span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">and</span><span class="op"> </span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span>top<span class="op"> </span><span class="kw">and</span><span class="op"> </span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span>bottom<span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">10</span></span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>left<span class="op">,</span><span class="op"> </span>top<span class="op">,</span><span class="op"> </span>right<span class="op">,</span><span class="op"> </span>bottom<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line dim"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">22</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- the box lights up while the circle is in it
+x, y = 100, 135
+left, right = 180, 300
+top, bottom = 80, 190
+
+function _update()
+	if btn(0) then x -= 2 end
+	if btn(1) then x += 2 end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+end
+
+function _draw()
+	cls(1)
+	local col = 5
+	if x &gt; left and x &lt; right
+		and y &gt; top and y &lt; bottom then
+		col = 10
+	end
+	rectfill(left, top, right, bottom, col)
+	circfill(x, y, 8, 12)
+end
+</textarea></div>
+      <div class="code" data-slide="6" hidden><div class="codehead"><span class="file">demos/6_bounce.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- a ball that bounces off the edges</span></span>
+<span class="line"><span class="ln">2</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span></span>
+<span class="line"><span class="ln">3</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="dx">3</span></span>
+<span class="line"><span class="ln">4</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="dy">2</span></span>
+<span class="line"><span class="ln">5</span></span>
+<span class="line"><span class="ln">6</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>dx</span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>dy</span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">471</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>dx</span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span><span class="num">471</span><span class="op">)</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">261</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>dy</span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">261</span><span class="op">)</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">17</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">18</span></span>
+<span class="line"><span class="ln">19</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">22</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- a ball that bounces off the edges
+x, y = 240, 135
+dx = 3
+dy = 2
+
+function _update()
+	x += dx
+	y += dy
+	if x &lt; 8 or x &gt; 471 then
+		dx = -dx
+		x = mid(8, x, 471)
+	end
+	if y &lt; 8 or y &gt; 261 then
+		dy = -dy
+		y = mid(8, y, 261)
+	end
+end
+
+function _draw()
+	cls(1)
+	circfill(x, y, 8, 10)
+end
+</textarea><div class="sliders"><label class="slider"><span>dx</span><input type="range" data-var="dx" min="-6" max="6" step="0.5" value="3"><output>3</output></label><label class="slider"><span>dy</span><input type="range" data-var="dy" min="-6" max="6" step="0.5" value="2"><output>2</output></label></div></div>
+      <div class="code" data-slide="7" hidden><div class="codehead"><span class="file">demos/7_over_to_you.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">60</span></span>
+<span class="line"><span class="ln">2</span>dx<span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">3</span><span class="op">,</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">3</span>px<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span></span>
+<span class="line"><span class="ln">4</span></span>
+<span class="line"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="com">-- the paddle</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>px<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">4</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>px<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">4</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span>px<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">24</span><span class="op">,</span><span class="op"> </span>px<span class="op">,</span><span class="op"> </span><span class="num">455</span><span class="op">)</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="com">-- the ball</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>dx</span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>dy</span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">4</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">475</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>dx</span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">4</span><span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span><span class="num">475</span><span class="op">)</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">4</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">265</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>dy</span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">4</span><span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">265</span><span class="op">)</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="com">-- your ideas go here!</span></span>
+<span class="line"><span class="ln">22</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">23</span></span>
+<span class="line"><span class="ln">24</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">26</span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>px<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">24</span><span class="op">,</span><span class="op"> </span><span class="num">250</span><span class="op">,</span><span class="op"> </span>px<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">24</span><span class="op">,</span><span class="op"> </span><span class="num">255</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">27</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">4</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">28</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>x, y = 240, 60
+dx, dy = 3, 2
+px = 240
+
+function _update()
+	-- the paddle
+	if btn(0) then px -= 4 end
+	if btn(1) then px += 4 end
+	px = mid(24, px, 455)
+	-- the ball
+	x += dx
+	y += dy
+	if x &lt; 4 or x &gt; 475 then
+		dx = -dx
+		x = mid(4, x, 475)
+	end
+	if y &lt; 4 or y &gt; 265 then
+		dy = -dy
+		y = mid(4, y, 265)
+	end
+	-- your ideas go here!
+end
+
+function _draw()
+	cls(1)
+	rectfill(px - 24, 250, px + 24, 255, 7)
+	circfill(x, y, 4, 10)
+end
+</textarea></div>
+    </div></div>
+    <div class="cartcol">
+      <div class="cart">
+        <iframe id="cart" src="player.html#s=1" title="Making decisions (lesson demo)" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="controls">
+        <button id="prev" aria-label="Previous slide">&larr;</button>
+        <span id="count">1 / 7</span>
+        <button id="next" aria-label="Next slide">&rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="captions">
+  <section class="caption" data-slide="1" hidden><h2><span class="num">1</span> Comparisons are questions</h2><p>In the last lesson, <code>btn(1)</code> asked a question and <code>if</code> acted on the answer. Now we'll ask questions of our own. Is the circle past the middle? Has it reached the edge? Questions like these are called <em>comparisons</em>, and almost every decision a game makes starts with one.</p>
+<p>A comparison takes two values and answers <code>true</code> or <code>false</code>. <code>x &gt; 240</code> asks "is <code>x</code> bigger than 240?", <code>x == 240</code> asks "is it exactly 240?", and <code>x != 240</code> asks "is it anything <em>other</em> than 240?" (Lua's own spelling of that last one is <code>~=</code>, and Picotron understands both.) There's also <code>&lt;</code> for "less than", plus <code>&lt;=</code> and <code>&gt;=</code> for "less than or equal" and "greater than or equal".</p>
+<p>Look closely at the double equals sign. One <code>=</code> <em>puts</em> a value into a variable; two <code>==</code> <em>ask</em> whether two values are the same. Mixing them up is one of the most common slips in all of programming, so don't feel bad when you do it.</p>
+<p>Move the circle across the line and watch the answers change. The answers go through <code>tostr()</code> first because <code>..</code> can only join text and numbers, and <code>tostr</code> turns <code>true</code> or <code>false</code> into text.</p><div class="try"><h3>Try this</h3><ul><li>Change the start to <code>x = 100</code>, hold right and watch <code>x == 240</code> as the circle crosses the line. Then set <code>speed = 3</code> and try again. Predict before each run whether you'll ever see <code>true</code>, and then work out why, by thinking about which numbers <code>x</code> actually lands on.</li><li>Change one of the <code>==</code> into a single <code>=</code> and run it. Picotron refuses to start. Read the message: which line does it point at, and what was it expecting to find? Why might it be a good thing that Lua refuses instead of guessing what you meant?</li><li>Add a line that prints <code>tostr(btn(1) == true)</code> and hold right. Before you run it, remember what <code>btn</code> answers with (slide 2 of the last lesson). Were you right? What would you write instead?</li></ul></div></section>
+  <section class="caption" data-slide="2" hidden><h2><span class="num">2</span> Staying on screen</h2><p>Here's the four-way movement from the last lesson, with one problem fixed: hold an arrow and the circle stops at the edge, instead of sliding off into nowhere.</p>
+<p>The fix is four small decisions, made <em>after</em> the movement. First we move, then we check: if <code>x</code> has gone below 8, put it back to 8. The 8 is the circle's radius, so at <code>x = 8</code> its left side just touches the left edge of the screen. On the right, the last column of pixels is 479, so the centre can go up to 479 - 8 = 471. The bottom works the same way: 269 - 8 = 261.</p>
+<p>Why correct it afterwards, instead of only moving when there's room? Because this way it doesn't matter <em>how</em> the circle got too far. A high speed, a knockback, a teleport: whatever happened this frame, these four lines tidy up before anything is drawn. "Move, then correct" is a pattern you'll find in almost every game.</p><div class="try"><h3>Try this</h3><ul><li>Instead of stopping at the edges, make the circle wrap: off the right side, back on at the left, and the same for top and bottom. Play with both versions. Which feels better for a spaceship, and which for a person walking around a room?</li><li>Make the circle twice as big (radius 16). What else has to change so it still stops snugly at every edge? Then rewrite it so one variable, <code>r</code>, sets the size, and the edges follow along by themselves.</li><li>Turn the circle a different colour while it's pressed against a wall, and back to blue when it isn't. Which lines of code only run on the frames when it's touching?</li></ul></div></section>
+  <section class="caption" data-slide="3" hidden><h2><span class="num">3</span> mid() in one line</h2><p>Those four <code>if</code>s work, but each one is a small chance to type the wrong number or point a <code>&lt;</code> the wrong way. Keeping a number between two limits is so common that Picotron has a function for it: <code>mid(a, b, c)</code> gives back whichever of its three numbers is in the middle.</p>
+<p>So <code>mid(8, x, 471)</code> gives 8 when <code>x</code> is less than 8, 471 when it's more than 471, and <code>x</code> itself anywhere in between. This is called <em>clamping</em>. One line per direction now does what two <code>if</code>s did before.</p>
+<p>Move the circle around: it behaves exactly like the last slide. Both versions are fine, so use whichever reads more clearly to you. You'll see <code>mid</code> a lot in other people's Picotron code.</p><div class="try"><h3>Try this</h3><ul><li>Does the order of the three numbers matter? Predict what <code>x = mid(471, x, 8)</code> does, then try it.</li><li>In Basics 3 you met <code>max</code>, which gives the bigger of two numbers; <code>min</code> gives the smaller. Rewrite the clamp using <code>max</code> and <code>min</code> instead of <code>mid</code>. Which of the two stops the circle at the left edge?</li><li>A Picotron quirk: predict what <code>max(1, 5, 9)</code> gives, then print it and see. Why could this cause a bug that's hard to spot?</li></ul></div></section>
+  <section class="caption" data-slide="4" hidden><h2><span class="num">4</span> else and elseif</h2><p>So far every <code>if</code> has meant "do this, or do nothing". Often you want "do this, <em>otherwise</em> do that", and that's what <code>else</code> is for.</p>
+<p>When there are more than two choices, <code>elseif</code> adds another question to the chain. Lua asks them from the top down. The first one that answers <code>true</code> gets its lines run, and the rest of the chain is skipped. If none of them is true, the <code>else</code> lines run. So exactly one branch runs, every time.</p>
+<p>Here the circle's colour depends on which third of the screen it's in. Read the chain from the top: if <code>x</code> is less than 160, red. Otherwise, if it's less than 320, green. Otherwise, blue. Notice that the second question doesn't need to say "and at least 160": if <code>x</code> were smaller than that, the first branch would already have won.</p><div class="try"><h3>Try this</h3><ul><li>Swap the first two questions, so <code>x &lt; 320</code> is asked before <code>x &lt; 160</code>. Before you run it, predict which colour you'll never see again, and explain why.</li><li><code>elseif</code> is one word. Write <code>else if</code> as two words instead and run it. What does Picotron complain about? Can you make the two-word version work, and what does that tell you about what <code>else if</code> really means?</li><li>In Basics 3 you met <code>\</code>, which divides and rounds down. Replace the whole chain with a single line that sets <code>col</code> to 8, 9 or 10 depending on the third. Which version would you rather change if you wanted six zones?</li></ul></div></section>
+  <section class="caption" data-slide="5" hidden><h2><span class="num">5</span> and, or, not</h2><p>Sometimes one question isn't enough. "Is the circle inside the box?" is really four questions: is it to the right of the box's left side, <em>and</em> to the left of its right side, <em>and</em> below its top, <em>and</em> above its bottom?</p>
+<p><code>and</code> joins two questions, and the answer is only <code>true</code> when <em>both</em> are. Chain several together and every one of them has to be true, so the box lights up only while all four agree. Lua doesn't mind the question being split over two lines; it keeps reading until it finds <code>then</code>.</p>
+<p><code>or</code> is true when <em>either</em> side is (or both), and <code>not</code> flips an answer around: <code>not true</code> is <code>false</code>. You've already used <code>or</code> once: <code>btn(b) or 0</code> from the last lesson works because <code>or</code> gives back its first value when that counts as "yes", and its second value otherwise.</p><div class="try"><h3>Try this</h3><ul><li>Make the box light up only while the circle is inside it <em>and</em> O is held. Then give it a third colour for "O is held, but you're outside".</li><li>Right now it's the circle's <em>centre</em> that has to be inside. Change the questions so the box lights up as soon as any part of the circle touches it. (Think about the radius.)</li><li><code>not</code> is greedy: it grabs only the thing right after it. Try <code>if not x &gt; 240 then</code> and read the error. What did <code>not</code> actually get applied to, and how do brackets fix it?</li></ul></div></section>
+  <section class="caption" data-slide="6" hidden><h2><span class="num">6</span> Bouncing</h2><p>Until now the circle only moved when you pushed it. This ball moves all by itself, and decisions change <em>how</em> it moves.</p>
+<p><code>dx</code> and <code>dy</code> are its velocity: how far it travels across and down each frame. Every frame we add them to <code>x</code> and <code>y</code>. A positive <code>dx</code> moves right and a negative one moves left, so bouncing off a side wall doesn't need any new direction worked out: we just flip the sign with <code>dx = -dx</code>. 3 becomes -3, and -3 becomes 3.</p>
+<p>After a bounce we also clamp the ball back onto the screen with <code>mid</code>, the "move, then correct" idea from earlier. Drag the sliders and watch: each slider sets that velocity, and the next wall flips it. Try a negative value, or 0.</p><div class="try"><h3>Try this</h3><ul><li>The <code>mid</code> lines look like they do nothing: delete them and the ball still bounces. Now start the ball at <code>x = 475</code>, just past the right edge. Predict what happens, then run it. What were the <code>mid</code> lines protecting you from?</li><li>Add gravity: <code>dy += 0.2</code> every frame. Does the ball keep bouncing to the same height forever? Make it lose a little height on each bounce off the floor, like a real ball.</li><li>Make the ball change to a random colour each time it hits a wall, and only then. Which lines run exactly once per bounce?</li></ul></div></section>
+  <section class="caption" data-slide="7" hidden><h2><span class="num">7</span> Over to you</h2><p>Every part of this lesson was the same idea: ask a question, then do something about the answer. Here's a ball and a paddle to put it all together. The paddle moves with left and right and stays on screen, and the ball bounces off all four walls. Nothing connects them yet. That's your job.</p>
+<p>Copy the code into a new cart in Picotron, then pick an idea below and see if you can make it work. There's no single right answer, and breaking things on the way is part of how everyone learns.</p><div class="try"><h3>Try this</h3><ul><li>Pong for one: take away the bottom wall so the ball can fall off the screen, and make it bounce off the paddle instead. When the ball is lost, put it back near the top. (The paddle question is an <code>and</code> chain, like the box on slide 5. If the ball wobbles inside the paddle, remember the stuck ball on slide 6.)</li><li>Count how many times in a row you return the ball, print it, and start again from 0 when you miss. Then keep a best score that only changes when you beat it.</li><li>Make the paddle aim: hits near its ends send the ball off at a steep angle, and hits near the middle send it almost straight up. <code>x - px</code> tells you how far from the middle the ball landed.</li></ul></div></section>
+  </div>
+  <nav class="lessons"><a href="../basics-04-input/index.html">&larr; Moving with btn()</a> <a href="../index.html">All lessons</a> <a href="../basics-06-lists/index.html">Lists &rarr;</a></nav>
+  <p class="built">Built with Picotron 0.3.0d.</p>
+</article>
+<script src="../static/lesson.js"></script>
+
+</main>
+<footer class="site">
+  <span>Stuck? Ask in <a href="https://discord.gg/XQStcpPeH4">#help on the Picotron Discord</a>. Questions about Demotron itself: DM <strong>Rybar</strong> there.</span>
+  <span>Lessons for <a href="https://www.lexaloffle.com/picotron.php">Picotron</a> by Lexaloffle.</span>
+</footer>
+</body>
+</html>
