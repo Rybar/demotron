@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objects · Demotron</title>
+<meta name="description" content="Tables with named fields, lists of objects, functions that build them, methods, and removing objects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Jersey+10&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../static/demotron.css">
+</head>
+<body class="wide">
+<header class="site">
+  <a href="../index.html" class="brand"><svg class="mascot" width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1" fill="#000000"/><rect x="11" y="0" width="1" height="1" fill="#000000"/><rect x="5" y="1" width="1" height="1" fill="#000000"/><rect x="10" y="1" width="1" height="1" fill="#000000"/><rect x="6" y="2" width="1" height="1" fill="#000000"/><rect x="9" y="2" width="1" height="1" fill="#000000"/><rect x="7" y="3" width="1" height="1" fill="#000000"/><rect x="8" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#000000"/><rect x="3" y="4" width="1" height="1" fill="#000000"/><rect x="4" y="4" width="1" height="1" fill="#000000"/><rect x="5" y="4" width="1" height="1" fill="#000000"/><rect x="6" y="4" width="1" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#000000"/><rect x="8" y="4" width="1" height="1" fill="#000000"/><rect x="9" y="4" width="1" height="1" fill="#000000"/><rect x="10" y="4" width="1" height="1" fill="#000000"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="12" y="4" width="1" height="1" fill="#000000"/><rect x="13" y="4" width="1" height="1" fill="#000000"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="1" height="1" fill="#ff77a8"/><rect x="3" y="5" width="1" height="1" fill="#ff77a8"/><rect x="4" y="5" width="1" height="1" fill="#ff77a8"/><rect x="5" y="5" width="1" height="1" fill="#ff77a8"/><rect x="6" y="5" width="1" height="1" fill="#ff77a8"/><rect x="7" y="5" width="1" height="1" fill="#ff77a8"/><rect x="8" y="5" width="1" height="1" fill="#ff77a8"/><rect x="9" y="5" width="1" height="1" fill="#ff77a8"/><rect x="10" y="5" width="1" height="1" fill="#ff77a8"/><rect x="11" y="5" width="1" height="1" fill="#ff77a8"/><rect x="12" y="5" width="1" height="1" fill="#ff77a8"/><rect x="13" y="5" width="1" height="1" fill="#ff77a8"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="1" height="1" fill="#ff77a8"/><rect x="3" y="6" width="1" height="1" fill="#1d2b53"/><rect x="4" y="6" width="1" height="1" fill="#1d2b53"/><rect x="5" y="6" width="1" height="1" fill="#1d2b53"/><rect x="6" y="6" width="1" height="1" fill="#1d2b53"/><rect x="7" y="6" width="1" height="1" fill="#1d2b53"/><rect x="8" y="6" width="1" height="1" fill="#1d2b53"/><rect x="9" y="6" width="1" height="1" fill="#1d2b53"/><rect x="10" y="6" width="1" height="1" fill="#1d2b53"/><rect x="11" y="6" width="1" height="1" fill="#1d2b53"/><rect x="12" y="6" width="1" height="1" fill="#1d2b53"/><rect x="13" y="6" width="1" height="1" fill="#ff77a8"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="1" height="1" fill="#000000"/><rect x="2" y="7" width="1" height="1" fill="#ff77a8"/><rect x="3" y="7" width="1" height="1" fill="#1d2b53"/><rect x="4" y="7" width="1" height="1" fill="#fff1e8"/><rect x="5" y="7" width="1" height="1" fill="#1d2b53"/><rect x="6" y="7" width="1" height="1" fill="#1d2b53"/><rect x="7" y="7" width="1" height="1" fill="#1d2b53"/><rect x="8" y="7" width="1" height="1" fill="#1d2b53"/><rect x="9" y="7" width="1" height="1" fill="#1d2b53"/><rect x="10" y="7" width="1" height="1" fill="#1d2b53"/><rect x="11" y="7" width="1" height="1" fill="#fff1e8"/><rect x="12" y="7" width="1" height="1" fill="#1d2b53"/><rect x="13" y="7" width="1" height="1" fill="#ff77a8"/><rect x="14" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="1" height="1" fill="#ff77a8"/><rect x="3" y="8" width="1" height="1" fill="#1d2b53"/><rect x="4" y="8" width="1" height="1" fill="#fff1e8"/><rect x="5" y="8" width="1" height="1" fill="#1d2b53"/><rect x="6" y="8" width="1" height="1" fill="#1d2b53"/><rect x="7" y="8" width="1" height="1" fill="#1d2b53"/><rect x="8" y="8" width="1" height="1" fill="#1d2b53"/><rect x="9" y="8" width="1" height="1" fill="#1d2b53"/><rect x="10" y="8" width="1" height="1" fill="#1d2b53"/><rect x="11" y="8" width="1" height="1" fill="#fff1e8"/><rect x="12" y="8" width="1" height="1" fill="#1d2b53"/><rect x="13" y="8" width="1" height="1" fill="#ff77a8"/><rect x="14" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="1" height="1" fill="#ff77a8"/><rect x="3" y="9" width="1" height="1" fill="#1d2b53"/><rect x="4" y="9" width="1" height="1" fill="#1d2b53"/><rect x="5" y="9" width="1" height="1" fill="#1d2b53"/><rect x="6" y="9" width="1" height="1" fill="#1d2b53"/><rect x="7" y="9" width="1" height="1" fill="#1d2b53"/><rect x="8" y="9" width="1" height="1" fill="#1d2b53"/><rect x="9" y="9" width="1" height="1" fill="#1d2b53"/><rect x="10" y="9" width="1" height="1" fill="#1d2b53"/><rect x="11" y="9" width="1" height="1" fill="#1d2b53"/><rect x="12" y="9" width="1" height="1" fill="#1d2b53"/><rect x="13" y="9" width="1" height="1" fill="#ff77a8"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="1" height="1" fill="#ff77a8"/><rect x="3" y="10" width="1" height="1" fill="#1d2b53"/><rect x="4" y="10" width="1" height="1" fill="#1d2b53"/><rect x="5" y="10" width="1" height="1" fill="#fff1e8"/><rect x="6" y="10" width="1" height="1" fill="#1d2b53"/><rect x="7" y="10" width="1" height="1" fill="#1d2b53"/><rect x="8" y="10" width="1" height="1" fill="#1d2b53"/><rect x="9" y="10" width="1" height="1" fill="#1d2b53"/><rect x="10" y="10" width="1" height="1" fill="#fff1e8"/><rect x="11" y="10" width="1" height="1" fill="#1d2b53"/><rect x="12" y="10" width="1" height="1" fill="#1d2b53"/><rect x="13" y="10" width="1" height="1" fill="#ff77a8"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="1" height="1" fill="#ff77a8"/><rect x="3" y="11" width="1" height="1" fill="#1d2b53"/><rect x="4" y="11" width="1" height="1" fill="#1d2b53"/><rect x="5" y="11" width="1" height="1" fill="#1d2b53"/><rect x="6" y="11" width="1" height="1" fill="#fff1e8"/><rect x="7" y="11" width="1" height="1" fill="#fff1e8"/><rect x="8" y="11" width="1" height="1" fill="#fff1e8"/><rect x="9" y="11" width="1" height="1" fill="#fff1e8"/><rect x="10" y="11" width="1" height="1" fill="#1d2b53"/><rect x="11" y="11" width="1" height="1" fill="#1d2b53"/><rect x="12" y="11" width="1" height="1" fill="#1d2b53"/><rect x="13" y="11" width="1" height="1" fill="#ff77a8"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="1" y="12" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#ff77a8"/><rect x="3" y="12" width="1" height="1" fill="#1d2b53"/><rect x="4" y="12" width="1" height="1" fill="#1d2b53"/><rect x="5" y="12" width="1" height="1" fill="#1d2b53"/><rect x="6" y="12" width="1" height="1" fill="#1d2b53"/><rect x="7" y="12" width="1" height="1" fill="#1d2b53"/><rect x="8" y="12" width="1" height="1" fill="#1d2b53"/><rect x="9" y="12" width="1" height="1" fill="#1d2b53"/><rect x="10" y="12" width="1" height="1" fill="#1d2b53"/><rect x="11" y="12" width="1" height="1" fill="#1d2b53"/><rect x="12" y="12" width="1" height="1" fill="#1d2b53"/><rect x="13" y="12" width="1" height="1" fill="#ff77a8"/><rect x="14" y="12" width="1" height="1" fill="#000000"/><rect x="1" y="13" width="1" height="1" fill="#000000"/><rect x="2" y="13" width="1" height="1" fill="#ff77a8"/><rect x="3" y="13" width="1" height="1" fill="#ff77a8"/><rect x="4" y="13" width="1" height="1" fill="#ff77a8"/><rect x="5" y="13" width="1" height="1" fill="#ff77a8"/><rect x="6" y="13" width="1" height="1" fill="#ff77a8"/><rect x="7" y="13" width="1" height="1" fill="#ff77a8"/><rect x="8" y="13" width="1" height="1" fill="#ff77a8"/><rect x="9" y="13" width="1" height="1" fill="#ff77a8"/><rect x="10" y="13" width="1" height="1" fill="#ff77a8"/><rect x="11" y="13" width="1" height="1" fill="#ff77a8"/><rect x="12" y="13" width="1" height="1" fill="#ff77a8"/><rect x="13" y="13" width="1" height="1" fill="#ff77a8"/><rect x="14" y="13" width="1" height="1" fill="#000000"/><rect x="1" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="14" width="1" height="1" fill="#000000"/><rect x="3" y="14" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="1" height="1" fill="#000000"/><rect x="5" y="14" width="1" height="1" fill="#000000"/><rect x="6" y="14" width="1" height="1" fill="#000000"/><rect x="7" y="14" width="1" height="1" fill="#000000"/><rect x="8" y="14" width="1" height="1" fill="#000000"/><rect x="9" y="14" width="1" height="1" fill="#000000"/><rect x="10" y="14" width="1" height="1" fill="#000000"/><rect x="11" y="14" width="1" height="1" fill="#000000"/><rect x="12" y="14" width="1" height="1" fill="#000000"/><rect x="13" y="14" width="1" height="1" fill="#000000"/><rect x="14" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="15" width="1" height="1" fill="#000000"/><rect x="3" y="15" width="1" height="1" fill="#000000"/><rect x="12" y="15" width="1" height="1" fill="#000000"/><rect x="13" y="15" width="1" height="1" fill="#000000"/></svg><span>Demotron</span></a>
+  <span class="tag">learn to make games in Picotron!</span>
+</header>
+<main>
+
+<article class="lesson">
+  <div class="lesson-head"><p class="crumbs"><a href="../index.html">demotron</a> / beginner basics / <span class="lnum">07</span></p><h1>Objects</h1><p class="summary">Tables with named fields, lists of objects, functions that build them, methods, and removing objects.</p></div>
+  <div class="workbench">
+    <div class="codepane"><div class="codepane-inner">
+      <div class="code" data-slide="1" hidden><div class="codehead"><span class="file">demos/1_ball.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- one ball: all its numbers in one table</span></span>
+<span class="line"><span class="ln">2</span>ball<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">3</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">10</span><span class="op">}</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>ball<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>ball<span class="op">.</span>dy</span>
+<span class="line dim"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>ball<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>ball<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">471</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line dim"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>ball<span class="op">.</span>dx</span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>ball<span class="op">.</span>x<span class="op">,</span><span class="op"> </span><span class="num">471</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>ball<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>ball<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">261</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line dim"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>ball<span class="op">.</span>dy</span>
+<span class="line dim"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>ball<span class="op">.</span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mid</span><span class="op">(</span><span class="num">8</span><span class="op">,</span><span class="op"> </span>ball<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">261</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">15</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">16</span></span>
+<span class="line dim"><span class="ln">17</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>ball<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>ball<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>ball<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line dim"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;ball.x  is &quot;</span><span class="op">.</span><span class="op">.</span>ball<span class="op">.</span>x<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;ball.y  is &quot;</span><span class="op">.</span><span class="op">.</span>ball<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">18</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;ball.dx is &quot;</span><span class="op">.</span><span class="op">.</span>ball<span class="op">.</span>dx<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">28</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;ball.dy is &quot;</span><span class="op">.</span><span class="op">.</span>ball<span class="op">.</span>dy<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">38</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">24</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- one ball: all its numbers in one table
+ball = {x = 240, y = 135, dx = 3, dy = 2, col = 10}
+
+function _update()
+	ball.x += ball.dx
+	ball.y += ball.dy
+	if ball.x &lt; 8 or ball.x &gt; 471 then
+		ball.dx = -ball.dx
+		ball.x = mid(8, ball.x, 471)
+	end
+	if ball.y &lt; 8 or ball.y &gt; 261 then
+		ball.dy = -ball.dy
+		ball.y = mid(8, ball.y, 261)
+	end
+end
+
+function _draw()
+	cls(1)
+	circfill(ball.x, ball.y, 8, ball.col)
+	print(&quot;ball.x  is &quot;..ball.x, 8, 8, 6)
+	print(&quot;ball.y  is &quot;..ball.y, 8, 18, 6)
+	print(&quot;ball.dx is &quot;..ball.dx, 8, 28, 6)
+	print(&quot;ball.dy is &quot;..ball.dy, 8, 38, 6)
+end
+</textarea></div>
+      <div class="code" data-slide="2" hidden><div class="codehead"><span class="file">demos/2_balls.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- a list of balls, each one its own table</span></span>
+<span class="line"><span class="ln">2</span><span class="bi">count</span><span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="count">20</span></span>
+<span class="line"><span class="ln">3</span>balls<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line"><span class="ln">4</span></span>
+<span class="line"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="com">-- one more ball each frame, up to count</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="op">#</span>balls<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="bi">count</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>balls<span class="op">,</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">464</span><span class="op">)</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">254</span><span class="op">)</span><span class="op">,</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">flr</span><span class="op">(</span><span class="bi">rnd</span><span class="op">(</span><span class="num">8</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op">}</span><span class="op">)</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="com">-- too many? remove the newest</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="op">#</span>balls<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="bi">count</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">deli</span><span class="op">(</span>balls<span class="op">,</span><span class="op"> </span><span class="op">#</span>balls<span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="com">-- move every ball</span></span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>b<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>b<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">473</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>b<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">263</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">26</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>b<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">27</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">28</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">29</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">30</span></span>
+<span class="line"><span class="ln">31</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">33</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">34</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>b<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>b<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">,</span><span class="op"> </span>b<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">35</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">36</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;#balls is &quot;</span><span class="op">.</span><span class="op">.</span><span class="op">#</span>balls<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">37</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- a list of balls, each one its own table
+count = 20
+balls = {}
+
+function _update()
+	-- one more ball each frame, up to count
+	if #balls &lt; count then
+		add(balls, {
+			x = 8 + rnd(464), y = 8 + rnd(254),
+			dx = rnd(4) - 2, dy = rnd(4) - 2,
+			col = 8 + flr(rnd(8))
+		})
+	end
+	-- too many? remove the newest
+	if #balls &gt; count then
+		deli(balls, #balls)
+	end
+	-- move every ball
+	for b in all(balls) do
+		b.x += b.dx
+		b.y += b.dy
+		if b.x &lt; 6 or b.x &gt; 473 then
+			b.dx = -b.dx
+		end
+		if b.y &lt; 6 or b.y &gt; 263 then
+			b.dy = -b.dy
+		end
+	end
+end
+
+function _draw()
+	cls(1)
+	for b in all(balls) do
+		circfill(b.x, b.y, 6, b.col)
+	end
+	print(&quot;#balls is &quot;..#balls, 8, 8, 6)
+end
+</textarea><div class="sliders"><label class="slider"><span>count</span><input type="range" data-var="count" min="0" max="200" step="10" value="20"><output>20</output></label></div></div>
+      <div class="code" data-slide="3" hidden><div class="codehead"><span class="file">demos/3_make.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- one function knows how to build a ball</span></span>
+<span class="line dim"><span class="ln">2</span>balls<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line dim"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>make_ball<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span>y<span class="op">,</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">flr</span><span class="op">(</span><span class="bi">rnd</span><span class="op">(</span><span class="num">8</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op">}</span></span>
+<span class="line"><span class="ln">10</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">11</span></span>
+<span class="line dim"><span class="ln">12</span><span class="kw">function</span><span class="op"> </span>_init<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">5</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>balls<span class="op">,</span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">16</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">17</span></span>
+<span class="line dim"><span class="ln">18</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btnp</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line dim"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>balls<span class="op">,</span></span>
+<span class="line dim"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">464</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">254</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line dim"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>b<span class="op">.</span>dx</span>
+<span class="line dim"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>b<span class="op">.</span>dy</span>
+<span class="line dim"><span class="ln">26</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>b<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">473</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line dim"><span class="ln">27</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>b<span class="op">.</span>dx</span>
+<span class="line dim"><span class="ln">28</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">29</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>b<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">263</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line dim"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>b<span class="op">.</span>dy</span>
+<span class="line dim"><span class="ln">31</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">33</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">34</span></span>
+<span class="line dim"><span class="ln">35</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">36</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">37</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line dim"><span class="ln">38</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>b<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>b<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">,</span><span class="op"> </span>b<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line dim"><span class="ln">39</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">40</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;o: add a ball   #balls: &quot;</span><span class="op">.</span><span class="op">.</span><span class="op">#</span>balls<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">41</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- one function knows how to build a ball
+balls = {}
+
+function make_ball(x, y)
+	return {
+		x = x, y = y,
+		dx = rnd(4) - 2, dy = rnd(4) - 2,
+		col = 8 + flr(rnd(8))
+	}
+end
+
+function _init()
+	for i = 1, 5 do
+		add(balls, make_ball(240, 135))
+	end
+end
+
+function _update()
+	if btnp(4) then
+		add(balls,
+			make_ball(8 + rnd(464), 8 + rnd(254)))
+	end
+	for b in all(balls) do
+		b.x += b.dx
+		b.y += b.dy
+		if b.x &lt; 6 or b.x &gt; 473 then
+			b.dx = -b.dx
+		end
+		if b.y &lt; 6 or b.y &gt; 263 then
+			b.dy = -b.dy
+		end
+	end
+end
+
+function _draw()
+	cls(1)
+	for b in all(balls) do
+		circfill(b.x, b.y, 6, b.col)
+	end
+	print(&quot;o: add a ball   #balls: &quot;..#balls, 8, 8, 6)
+end
+</textarea></div>
+      <div class="code" data-slide="4" hidden><div class="codehead"><span class="file">demos/4_methods.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- each ball carries its own update and draw</span></span>
+<span class="line"><span class="ln">2</span>balls<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>make_ball<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span>y<span class="op">,</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">flr</span><span class="op">(</span><span class="bi">rnd</span><span class="op">(</span><span class="num">8</span><span class="op">)</span><span class="op">)</span><span class="op">,</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>update<span class="op"> </span><span class="op">=</span><span class="op"> </span>move_ball<span class="op">,</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>draw<span class="op"> </span><span class="op">=</span><span class="op"> </span>draw_ball</span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op">}</span></span>
+<span class="line"><span class="ln">12</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span></span>
+<span class="line"><span class="ln">14</span><span class="kw">function</span><span class="op"> </span>move_ball<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">473</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">263</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">23</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">24</span></span>
+<span class="line"><span class="ln">25</span><span class="kw">function</span><span class="op"> </span>draw_ball<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">26</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>self<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">27</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">28</span></span>
+<span class="line"><span class="ln">29</span><span class="kw">function</span><span class="op"> </span>_init<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">30</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">31</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>balls<span class="op">,</span></span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">464</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">254</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">33</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">34</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">35</span></span>
+<span class="line"><span class="ln">36</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">37</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">38</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">:</span>update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">39</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">40</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">41</span></span>
+<span class="line"><span class="ln">42</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">43</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">44</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">45</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">:</span>draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">46</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">47</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- each ball carries its own update and draw
+balls = {}
+
+function make_ball(x, y)
+	return {
+		x = x, y = y,
+		dx = rnd(4) - 2, dy = rnd(4) - 2,
+		col = 8 + flr(rnd(8)),
+		update = move_ball,
+		draw = draw_ball
+	}
+end
+
+function move_ball(self)
+	self.x += self.dx
+	self.y += self.dy
+	if self.x &lt; 6 or self.x &gt; 473 then
+		self.dx = -self.dx
+	end
+	if self.y &lt; 6 or self.y &gt; 263 then
+		self.dy = -self.dy
+	end
+end
+
+function draw_ball(self)
+	circfill(self.x, self.y, 6, self.col)
+end
+
+function _init()
+	for i = 1, 30 do
+		add(balls,
+			make_ball(8 + rnd(464), 8 + rnd(254)))
+	end
+end
+
+function _update()
+	for b in all(balls) do
+		b:update()
+	end
+end
+
+function _draw()
+	cls(1)
+	for b in all(balls) do
+		b:draw()
+	end
+end
+</textarea></div>
+      <div class="code" data-slide="5" hidden><div class="codehead"><span class="file">demos/5_kinds.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- balls and boxes in one list, one loop</span></span>
+<span class="line"><span class="ln">2</span>things<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>move<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">473</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">263</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">14</span></span>
+<span class="line"><span class="ln">15</span><span class="kw">function</span><span class="op"> </span>draw_ball<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>self<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">18</span></span>
+<span class="line"><span class="ln">19</span><span class="kw">function</span><span class="op"> </span>draw_box<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>self<span class="op">.</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="bi">rect</span><span class="op">(</span>self<span class="op">.</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">24</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">25</span></span>
+<span class="line"><span class="ln">26</span><span class="kw">function</span><span class="op"> </span>make_ball<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">27</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">28</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span>y<span class="op">,</span></span>
+<span class="line"><span class="ln">29</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">12</span><span class="op">,</span></span>
+<span class="line"><span class="ln">31</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>update<span class="op"> </span><span class="op">=</span><span class="op"> </span>move<span class="op">,</span><span class="op"> </span>draw<span class="op"> </span><span class="op">=</span><span class="op"> </span>draw_ball</span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="op">}</span></span>
+<span class="line"><span class="ln">33</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">34</span></span>
+<span class="line"><span class="ln">35</span><span class="kw">function</span><span class="op"> </span>make_box<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">36</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">37</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span>y<span class="op">,</span></span>
+<span class="line"><span class="ln">38</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">1</span><span class="op">,</span></span>
+<span class="line"><span class="ln">39</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">9</span><span class="op">,</span></span>
+<span class="line"><span class="ln">40</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>update<span class="op"> </span><span class="op">=</span><span class="op"> </span>move<span class="op">,</span><span class="op"> </span>draw<span class="op"> </span><span class="op">=</span><span class="op"> </span>draw_box</span>
+<span class="line"><span class="ln">41</span><span class="op"> </span><span class="op"> </span><span class="op">}</span></span>
+<span class="line"><span class="ln">42</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">43</span></span>
+<span class="line"><span class="ln">44</span><span class="kw">function</span><span class="op"> </span>_init<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">45</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">46</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>things<span class="op">,</span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">47</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>things<span class="op">,</span><span class="op"> </span>make_box<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">48</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">49</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">50</span></span>
+<span class="line"><span class="ln">51</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">52</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btnp</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">53</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>things<span class="op">,</span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">54</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">55</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btnp</span><span class="op">(</span><span class="num">5</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">56</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>things<span class="op">,</span><span class="op"> </span>make_box<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">57</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">58</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>o<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>things<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">59</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>o<span class="op">:</span>update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">60</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">61</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">62</span></span>
+<span class="line"><span class="ln">63</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">64</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">65</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>o<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>things<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">66</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>o<span class="op">:</span>draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">67</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">68</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;o: add a ball   x: add a box&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">69</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- balls and boxes in one list, one loop
+things = {}
+
+function move(self)
+	self.x += self.dx
+	self.y += self.dy
+	if self.x &lt; 6 or self.x &gt; 473 then
+		self.dx = -self.dx
+	end
+	if self.y &lt; 6 or self.y &gt; 263 then
+		self.dy = -self.dy
+	end
+end
+
+function draw_ball(self)
+	circfill(self.x, self.y, 6, self.col)
+end
+
+function draw_box(self)
+	rectfill(self.x - 5, self.y - 5,
+		self.x + 5, self.y + 5, self.col)
+	rect(self.x - 5, self.y - 5,
+		self.x + 5, self.y + 5, 7)
+end
+
+function make_ball(x, y)
+	return {
+		x = x, y = y,
+		dx = rnd(4) - 2, dy = rnd(4) - 2,
+		col = 12,
+		update = move, draw = draw_ball
+	}
+end
+
+function make_box(x, y)
+	return {
+		x = x, y = y,
+		dx = rnd(2) - 1, dy = rnd(2) - 1,
+		col = 9,
+		update = move, draw = draw_box
+	}
+end
+
+function _init()
+	for i = 1, 8 do
+		add(things, make_ball(240, 135))
+		add(things, make_box(240, 135))
+	end
+end
+
+function _update()
+	if btnp(4) then
+		add(things, make_ball(240, 135))
+	end
+	if btnp(5) then
+		add(things, make_box(240, 135))
+	end
+	for o in all(things) do
+		o:update()
+	end
+end
+
+function _draw()
+	cls(1)
+	for o in all(things) do
+		o:draw()
+	end
+	print(&quot;o: add a ball   x: add a box&quot;, 8, 8, 6)
+end
+</textarea></div>
+      <div class="code" data-slide="6" hidden><div class="codehead"><span class="file">demos/6_sparks.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- sparks that burn out and are removed</span></span>
+<span class="line"><span class="ln">2</span>lifetime<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="lifetime">60</span></span>
+<span class="line"><span class="ln">3</span>sparks<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line"><span class="ln">4</span></span>
+<span class="line"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="com">-- four new sparks every frame</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">4</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>sparks<span class="op">,</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">200</span><span class="op">,</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span><span class="num">2</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op">,</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>life<span class="op"> </span><span class="op">=</span><span class="op"> </span>lifetime</span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op">}</span><span class="op">)</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="com">-- move them; remove the burnt-out ones</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>s<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>sparks<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>s<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>s<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>s<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>s<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>s<span class="op">.</span>dy<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">0.08</span></span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>s<span class="op">.</span>life<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>s<span class="op">.</span>life<span class="op"> </span><span class="op">&lt;</span><span class="op">=</span><span class="op"> </span><span class="num">0</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">del</span><span class="op">(</span>sparks<span class="op">,</span><span class="op"> </span>s<span class="op">)</span></span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">24</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">25</span></span>
+<span class="line"><span class="ln">26</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">27</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">28</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>s<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>sparks<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">29</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>s<span class="op">.</span>life<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">20</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>s<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>s<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">31</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">else</span></span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>s<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>s<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span></span>
+<span class="line"><span class="ln">33</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">34</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">35</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;#sparks is &quot;</span><span class="op">.</span><span class="op">.</span><span class="op">#</span>sparks<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">36</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- sparks that burn out and are removed
+lifetime = 60
+sparks = {}
+
+function _update()
+	-- four new sparks every frame
+	for i = 1, 4 do
+		add(sparks, {
+			x = 240, y = 200,
+			dx = rnd(4) - 2, dy = -2 - rnd(3),
+			life = lifetime
+		})
+	end
+	-- move them; remove the burnt-out ones
+	for s in all(sparks) do
+		s.x += s.dx
+		s.y += s.dy
+		s.dy += 0.08
+		s.life -= 1
+		if s.life &lt;= 0 then
+			del(sparks, s)
+		end
+	end
+end
+
+function _draw()
+	cls(0)
+	for s in all(sparks) do
+		if s.life &gt; 20 then
+			circfill(s.x, s.y, 1, 10)
+		else
+			circfill(s.x, s.y, 1, 8)
+		end
+	end
+	print(&quot;#sparks is &quot;..#sparks, 8, 8, 6)
+end
+</textarea><div class="sliders"><label class="slider"><span>lifetime</span><input type="range" data-var="lifetime" min="10" max="120" step="10" value="60"><output>60</output></label></div></div>
+      <div class="code" data-slide="7" hidden><div class="codehead"><span class="file">demos/7_over_to_you.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- press O to add a ball</span></span>
+<span class="line"><span class="ln">2</span>balls<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span><span class="op">}</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>make_ball<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="op">{</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">=</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span>y<span class="op">,</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">rnd</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">2</span><span class="op">,</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">flr</span><span class="op">(</span><span class="bi">rnd</span><span class="op">(</span><span class="num">8</span><span class="op">)</span><span class="op">)</span><span class="op">,</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>update<span class="op"> </span><span class="op">=</span><span class="op"> </span>move_ball<span class="op">,</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>draw<span class="op"> </span><span class="op">=</span><span class="op"> </span>draw_ball</span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op">}</span></span>
+<span class="line"><span class="ln">12</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span></span>
+<span class="line"><span class="ln">14</span><span class="kw">function</span><span class="op"> </span>move_ball<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>x<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">473</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dx</span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span><span class="num">6</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span>self<span class="op">.</span>y<span class="op"> </span><span class="op">&gt;</span><span class="op"> </span><span class="num">263</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>self<span class="op">.</span>dy<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">-</span>self<span class="op">.</span>dy</span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">23</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">24</span></span>
+<span class="line"><span class="ln">25</span><span class="kw">function</span><span class="op"> </span>draw_ball<span class="op">(</span>self<span class="op">)</span></span>
+<span class="line"><span class="ln">26</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>self<span class="op">.</span>x<span class="op">,</span><span class="op"> </span>self<span class="op">.</span>y<span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">,</span><span class="op"> </span>self<span class="op">.</span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">27</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">28</span></span>
+<span class="line"><span class="ln">29</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btnp</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">31</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">add</span><span class="op">(</span>balls<span class="op">,</span><span class="op"> </span>make_ball<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">33</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">34</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">:</span>update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">35</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">36</span><span class="op"> </span><span class="op"> </span><span class="com">-- your ideas go here!</span></span>
+<span class="line"><span class="ln">37</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">38</span></span>
+<span class="line"><span class="ln">39</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">40</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">41</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>b<span class="op"> </span><span class="kw">in</span><span class="op"> </span><span class="bi">all</span><span class="op">(</span>balls<span class="op">)</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">42</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>b<span class="op">:</span>draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">43</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">44</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;balls: &quot;</span><span class="op">.</span><span class="op">.</span><span class="op">#</span>balls<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">45</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- press O to add a ball
+balls = {}
+
+function make_ball(x, y)
+	return {
+		x = x, y = y,
+		dx = rnd(4) - 2, dy = rnd(4) - 2,
+		col = 8 + flr(rnd(8)),
+		update = move_ball,
+		draw = draw_ball
+	}
+end
+
+function move_ball(self)
+	self.x += self.dx
+	self.y += self.dy
+	if self.x &lt; 6 or self.x &gt; 473 then
+		self.dx = -self.dx
+	end
+	if self.y &lt; 6 or self.y &gt; 263 then
+		self.dy = -self.dy
+	end
+end
+
+function draw_ball(self)
+	circfill(self.x, self.y, 6, self.col)
+end
+
+function _update()
+	if btnp(4) then
+		add(balls, make_ball(240, 135))
+	end
+	for b in all(balls) do
+		b:update()
+	end
+	-- your ideas go here!
+end
+
+function _draw()
+	cls(1)
+	for b in all(balls) do
+		b:draw()
+	end
+	print(&quot;balls: &quot;..#balls, 8, 8, 6)
+end
+</textarea></div>
+    </div></div>
+    <div class="cartcol">
+      <div class="window cartwin">
+        <div class="titlebar"><span class="tb-title">demo &mdash; click me, then use the keys</span></div>
+        <div class="cart">
+          <iframe id="cart" src="player.html#s=1" title="Objects (lesson demo)" allow="autoplay; fullscreen"></iframe>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="prev" class="px-btn" aria-label="Previous slide">&larr;</button>
+        <span id="count">1 / 7</span>
+        <button id="next" class="px-btn" aria-label="Next slide">&rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="window captions">
+    <div class="titlebar"><span class="tb-title">notes.txt</span></div>
+    <div class="win-body">
+  <section class="caption" data-slide="1" hidden><h2><span class="num">1</span> Fields</h2><p>At the end of Basics 6 the starfield kept each star's numbers in two lists: star 7 lived at <code>xs[7], ys[7]</code>, and every <code>add</code> to one list needed a matching <code>add</code> to the other. Each extra number per star would mean another list to keep in step. This lesson keeps all of one thing's numbers together in one table, and ends with lists of objects that move and draw themselves, and come and go.</p>
+<p>Here's the bouncing ball from Basics 5. It needs five numbers: where it is (<code>x</code>, <code>y</code>), how fast it's moving (<code>dx</code>, <code>dy</code>) and its colour. Line 2 puts all five in one table:</p>
+<p><code>ball = {x = 240, y = 135, dx = 3, dy = 2, col = 10}</code></p>
+<p>It's the same curly brackets as a list, but every value has a <em>name</em>. These named slots are <strong>fields</strong>, and a table of fields that stands for one thing in the game is an <strong>object</strong>. (Lua calls both lists and objects <em>tables</em>; a list is a table whose slots are numbered 1, 2, 3 instead of named.)</p>
+<p><code>ball.x</code> reads as "the ball's x", and works like any other variable, so <code>ball.x += ball.dx</code> moves the ball along. The bounce on lines 7 to 14 is Basics 5's, word for word apart from the <code>ball.</code> in front: flip the speed, then pull the ball back with <code>mid</code>. The printout in the corner shows the fields changing.</p><div class="try"><h3>Try this</h3><ul><li>Under line 2, add <code>other = ball</code> and then <code>other.col = 8</code>. Before you run it, predict: what colour is the bouncing ball now? And is there one ball in your program or two? Check, then keep that answer in mind for slide 2.</li><li>Give the ball a radius: add <code>r = 8</code> to the table and use <code>ball.r</code> in the <code>circfill</code>. Then make the walls use it too, so a ball with <code>r = 30</code> still bounces with its edge touching the side of the screen. (What are 471 and 261 made of?)</li><li>Misspell a field: change <code>ball.col</code> in the <code>circfill</code> to <code>ball.colour</code>. Predict whether Picotron will stop with an error, then run it. What does Lua hand back for a field that was never set? Basics 6's <code>scores[4]</code> is a clue.</li></ul></div></section>
+  <section class="caption" data-slide="2" hidden><h2><span class="num">2</span> Lists of objects</h2><p>Games want dozens of balls, so we put the objects in a list. <code>balls</code> is an ordinary list, like Basics 6's, except that every item is a whole ball table: <code>balls[3]</code> is the third ball, and <code>balls[3].x</code> is that ball's x.</p>
+<p>Lines 8 to 12 build a ball and <code>add</code> it in one go. Its five numbers travel together, so they can't get out of step the way <code>xs</code> and <code>ys</code> could: one <code>add</code> makes a ball, and one <code>deli</code> removes it, every number included.</p>
+<p><code>for b in all(balls)</code> visits each ball in turn, and <code>b</code> is not a <em>copy</em> of the ball; it <em>is</em> the ball. In Basics 6, <code>s += 10</code> inside the loop didn't change the scores, because <code>s</code> held a copy of a number. Tables aren't copied like that. <code>b</code> and the item in the list are two names for the same table (like <code>other</code> and <code>ball</code> on slide 1), so <code>b.x += b.dx</code> moves that ball for good.</p>
+<p>Drag <strong>count</strong>. The list starts empty, and each frame <code>_update</code> adds one ball until there are <code>count</code> of them, or removes the newest while there are too many. The slider only changes the <code>count</code> variable, without restarting the program, so <code>_update</code> checks it every frame and catches up. I made it one ball a frame so you can watch them pour in.</p><div class="try"><h3>Try this</h3><ul><li>Rebuild Basics 6's starfield the object way: a list of star tables, each with its own <code>x</code>, <code>y</code> and <code>speed</code>, so near stars race past and far ones drift (then draw the fast ones brighter). How many <code>add</code>s does each star need now?</li><li>Drag <strong>count</strong> down to 0, then back up to 20. Are these the same 20 balls you had before? Predict, then watch closely. Why does it work out that way?</li><li>Make the first ball in the list white with <code>balls[1].col = 7</code>, as the very first line of <code>_update</code>. Predict whether it works, then run it. What does the error tell you? (How many balls are there on the very first frame?) Make it safe with an <code>if</code> from Basics 5.</li></ul></div></section>
+  <section class="caption" data-slide="3" hidden><h2><span class="num">3</span> Building objects</h2><p>Slide 2 wrote the recipe for a ball inside the <code>add</code>. That's fine while balls are made in one place, but this program makes them in two: five at the start, and one more on each press of O. Two copies of the recipe means every future change (a new field, a different speed) has to be made twice, and sooner or later one copy gets missed.</p>
+<p>So we give the recipe a name. <code>make_ball</code> is a function, like <code>_update</code>, but one we call ourselves. The names in its brackets, <code>x</code> and <code>y</code>, are its <em>inputs</em>: calling <code>make_ball(240, 135)</code> means that inside the function <code>x</code> is 240 and <code>y</code> is 135. <code>return</code> hands the new table back to the caller, which is how <code>add(balls, make_ball(240, 135))</code> gets a ball to add. (Basics 8 covers functions properly.)</p>
+<p><code>x = x</code> on line 6 looks odd. The <code>x</code> on the left is the field's <em>name</em>, and the <code>x</code> on the right is the input's <em>value</em>: "give this table a field called x, holding the x we were given".</p>
+<p>Each call to <code>make_ball</code> builds a brand-new table, so the five balls in <code>_init</code> all start in the middle but get their own random speeds and colours, and fan out. Click on the cart and press O (Z on a keyboard) to add more at random spots. <code>8 + rnd(464)</code> keeps each new ball inside the walls (remember Basics 5's ball that started outside them).</p><div class="try"><h3>Try this</h3><ul><li>Add <code>one = make_ball(0, 0)</code> and <code>two = make_ball(0, 0)</code> at the end of <code>_init</code>, and <code>print(one == two, 8, 20, 7)</code> at the end of <code>_draw</code>. Both have x 0 and y 0: predict whether Lua calls them equal. Then go back to slide 1 and print <code>other == ball</code>. What do you think <code>==</code> is really asking about two tables?</li><li>Give <code>make_ball</code> a third input, <code>col</code>, so the caller picks the colour: O makes red balls and X makes blue ones. What happens to the five balls in <code>_init</code> if you forget to give them a colour?</li><li>Make X remove the oldest ball (Basics 6's <code>deli</code> can do it in one line). Which ball is the oldest: the first in the list or the last?</li></ul></div></section>
+  <section class="caption" data-slide="4" hidden><h2><span class="num">4</span> Methods</h2><p>The code that moves a ball still lives in <code>_update</code>, a long way from <code>make_ball</code>, the code that knows what a ball is. An object can carry its own functions instead.</p>
+<p>In Lua a function is a value, like a number or a table, so it can sit in a field. Lines 9 and 10 store two in every ball: <code>update = move_ball</code> and <code>draw = draw_ball</code>. There are no brackets after the names, because we're not <em>calling</em> the functions here, only storing them for later. A function kept in an object like this is a <strong>method</strong>.</p>
+<p><code>move_ball(self)</code> takes the ball it should move as its input, and calls it <code>self</code>. Any name would work, but <code>self</code> is the one Lua programmers use, and it reads well: "move <em>self</em> along by <em>self's</em> speed".</p>
+<p>Line 38, <code>b:update()</code>, has a colon. The colon means "call this object's own <code>update</code>, and pass the object itself in". Lua finds <code>move_ball</code> in <code>b</code>'s <code>update</code> field and calls it with <code>b</code> as its input, so <code>self</code> <em>is</em> <code>b</code>. <code>b:update()</code> is shorthand for <code>b.update(b)</code>.</p>
+<p>The payoff is in <code>_update</code> and <code>_draw</code>. They've shrunk to "everyone, update" and "everyone, draw", and know nothing about how a ball moves or what it looks like; the next slide shows why that matters. (Line 9 can mention <code>move_ball</code> before it's written because <code>make_ball</code> doesn't run until <code>_init</code>, and by then Picotron has read the whole file.)</p><div class="try"><h3>Try this</h3><ul><li>Change <code>b:update()</code> to <code>b.update()</code>, with a dot. Predict what happens, then run it and read the error carefully. Which name is nil, and why isn't it the ball any more?</li><li>Add the line <code>add(balls, make_ball(240, 135))</code> on line 13, between the end of <code>make_ball</code> and <code>move_ball</code>, outside any function. Predict, then run it. What does the error say is missing, and why wasn't it there yet?</li><li>Give the balls a third method, <code>kick</code>, that sets a new random <code>dx</code> and <code>dy</code>. Store it in <code>make_ball</code> like the other two, and make pressing O call <code>b:kick()</code> on every ball.</li></ul></div></section>
+  <section class="caption" data-slide="5" hidden><h2><span class="num">5</span> Different kinds of object</h2><p>Here's where methods pay off: this list holds two kinds of thing, blue balls and orange boxes. Press O to add a ball and X to add a box.</p>
+<p>Each kind has its own making function, <code>make_ball</code> and <code>make_box</code>. Both have an <code>x</code>, <code>y</code>, <code>dx</code> and <code>dy</code>, so they share one <code>move</code> function. Each has its own <code>draw</code>: <code>draw_ball</code> draws a circle, and <code>draw_box</code> a square with a white outline, 5 pixels each way from <code>x</code> and <code>y</code>.</p>
+<p>The loops at the bottom never ask "are you a ball or a box?" They call <code>o:draw()</code> on every thing in the list (<code>o</code> is for <em>object</em>), and each thing draws itself its own way, because each carries its own <code>draw</code>.</p>
+<p>That matters as a game grows. A third kind of thing needs its making function and its methods, and the loops don't change at all. Enemies, bullets, coins and explosions can all share one list, each knowing how to update and draw itself.</p><div class="try"><h3>Try this</h3><ul><li>In <code>make_box</code>, remove <code>, draw = draw_box</code> from the end of line 40. Predict what happens the moment the loop reaches a box, then read the error. Compare it with the dot error from slide 4: what's nil this time?</li><li>Give the boxes a different <code>update</code> too: instead of bouncing, they wrap around the screen edges with <code>%</code>, like Basics 6's stars. Which function do you write, and which word in <code>make_box</code> changes?</li><li>Add a third kind: a ring (<code>circ</code>) whose size pulses with <code>t()</code>. Put a few in <code>_init</code>, and check that you never had to touch the two loops.</li></ul></div></section>
+  <section class="caption" data-slide="6" hidden><h2><span class="num">6</span> Removing objects</h2><p>In a game, objects come and go all the time: bullets hit, coins get collected, sparks burn out. This fountain makes four sparks every frame, each an object with its own position, speed and <strong>life</strong>: how many frames it has left.</p>
+<p>Every frame each spark moves, falls a little (<code>s.dy += 0.08</code> is gravity) and loses 1 life. At 0, <code>del(sparks, s)</code> removes it, right there inside the loop. Sparks glow yellow and turn red for their last 20 frames, and the counter in the corner shows how many are alive.</p>
+<p>Basics 6's puzzle deleted inside <code>all</code> and missed one of the 20s in <code>{40, 20, 20, 90}</code>: <code>all</code> got confused because the item that slid into place had the same value as the one just deleted. Objects don't have that problem. <code>==</code> on tables asks "is this the same table?", not "are the numbers the same?" (slide 3's <code>one == two</code>), so two sparks are never equal, even if every number matches, and deleting the one we're on inside <code>all</code> is safe.</p>
+<p>It also settles Basics 6's snow challenge, where a landed flake had to be removed from two lists at once: one <code>del</code> removes the whole spark, every number of it.</p>
+<p>Drag <strong>lifetime</strong> to set how much life each new spark starts with; the fountain grows taller or shrinks. Sparks already flying keep the life they were born with.</p><div class="try"><h3>Try this</h3><ul><li>At lifetime 60, with four new sparks every frame, how many sparks should be alive at once? Work it out, then set the slider back to 60 and watch the counter settle. Is it exactly what you predicted? If not, follow one spark through its life, frame by frame.</li><li>At lifetime 120, lots of sparks fall off the bottom of the screen and carry on "living" where nobody can see them. Remove sparks when they go below the screen, as well as when they burn out, and use the counter to prove it worked. (Basics 5's <code>or</code> helps.)</li><li>Make the fountain move: give it a position of its own that bounces around the screen like slide 1's ball (as an object, of course), and start each new spark there.</li></ul></div></section>
+  <section class="caption" data-slide="7" hidden><h2><span class="num">7</span> Putting it together</h2><p>In this lesson we added:</p>
+<ul><li>objects: tables with named fields, read and written with a dot</li><li>lists of objects, where the loop variable <em>is</em> the object, not a copy</li><li>a function that builds objects, with inputs and <code>return</code></li><li>methods, called with a colon</li><li>different kinds of object sharing one list and one loop</li><li>removing an object with <code>del</code> inside <code>all</code></li></ul>
+<p>That's how most games keep track of their world. The starter here adds a ball in the middle on each press of O, and every ball carries its own <code>update</code> and <code>draw</code>. Copy it into a new cart and pick an idea below. Next, Basics 8 looks at functions properly: inputs, outputs, <code>local</code> and splitting a program across files.</p><div class="try"><h3>Try this</h3><ul><li>Trails: give each ball a list of its own recent positions (<code>trail = {}</code> in <code>make_ball</code>). Every frame, add where the ball is now, remove the oldest once there are 10, and draw the trail as small dots behind the ball. That's a list, inside an object, inside a list.</li><li>A crowd: make holding O add a ball every frame (Basics 4's <code>btn</code> instead of <code>btnp</code>), but never let there be more than 500. When the 500th is there, remove the oldest each time you add a new one.</li><li>Fireworks: add a second kind of object, a rocket that flies upwards. When its life runs out it removes itself and adds a burst of sparks where it was. Two kinds in one list (slide 5) that come and go (slide 6).</li><li>For the brave: make the balls bounce off each other. You'll need a loop inside a loop, so every ball can be checked against every other ball, and a test for whether two balls are touching.</li></ul></div></section>
+    </div>
+  </div>
+  <nav class="lessons"><a class="px-btn" href="../basics-06-lists/index.html">&larr; Lists</a> <a class="px-btn" href="../index.html">All lessons</a> <a class="px-btn" href="../basics-08-functions/index.html">Functions and files &rarr;</a></nav>
+  <p class="built">Built with Picotron 0.3.0d.</p>
+</article>
+<script src="../static/lesson.js"></script>
+
+</main>
+<footer class="site">
+  <p>Stuck? Ask in <a href="https://discord.gg/XQStcpPeH4">#help on the Picotron Discord</a>.
+  Questions about Demotron itself: DM <strong>Rybar</strong> there.</p>
+  <p class="small">Picotron is made by Lexaloffle. Demotron is a fan-made school for it.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprites · Demotron</title>
+<meta name="description" content="The sprite editor, drawing a character, putting it on screen with spr, flipping, a walking animation and transparency.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Jersey+10&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../static/demotron.css">
+</head>
+<body class="">
+<header class="site">
+  <a href="../index.html" class="brand"><svg class="mascot" width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1" fill="#000000"/><rect x="11" y="0" width="1" height="1" fill="#000000"/><rect x="5" y="1" width="1" height="1" fill="#000000"/><rect x="10" y="1" width="1" height="1" fill="#000000"/><rect x="6" y="2" width="1" height="1" fill="#000000"/><rect x="9" y="2" width="1" height="1" fill="#000000"/><rect x="7" y="3" width="1" height="1" fill="#000000"/><rect x="8" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#000000"/><rect x="3" y="4" width="1" height="1" fill="#000000"/><rect x="4" y="4" width="1" height="1" fill="#000000"/><rect x="5" y="4" width="1" height="1" fill="#000000"/><rect x="6" y="4" width="1" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#000000"/><rect x="8" y="4" width="1" height="1" fill="#000000"/><rect x="9" y="4" width="1" height="1" fill="#000000"/><rect x="10" y="4" width="1" height="1" fill="#000000"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="12" y="4" width="1" height="1" fill="#000000"/><rect x="13" y="4" width="1" height="1" fill="#000000"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="1" height="1" fill="#ff77a8"/><rect x="3" y="5" width="1" height="1" fill="#ff77a8"/><rect x="4" y="5" width="1" height="1" fill="#ff77a8"/><rect x="5" y="5" width="1" height="1" fill="#ff77a8"/><rect x="6" y="5" width="1" height="1" fill="#ff77a8"/><rect x="7" y="5" width="1" height="1" fill="#ff77a8"/><rect x="8" y="5" width="1" height="1" fill="#ff77a8"/><rect x="9" y="5" width="1" height="1" fill="#ff77a8"/><rect x="10" y="5" width="1" height="1" fill="#ff77a8"/><rect x="11" y="5" width="1" height="1" fill="#ff77a8"/><rect x="12" y="5" width="1" height="1" fill="#ff77a8"/><rect x="13" y="5" width="1" height="1" fill="#ff77a8"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="1" height="1" fill="#ff77a8"/><rect x="3" y="6" width="1" height="1" fill="#1d2b53"/><rect x="4" y="6" width="1" height="1" fill="#1d2b53"/><rect x="5" y="6" width="1" height="1" fill="#1d2b53"/><rect x="6" y="6" width="1" height="1" fill="#1d2b53"/><rect x="7" y="6" width="1" height="1" fill="#1d2b53"/><rect x="8" y="6" width="1" height="1" fill="#1d2b53"/><rect x="9" y="6" width="1" height="1" fill="#1d2b53"/><rect x="10" y="6" width="1" height="1" fill="#1d2b53"/><rect x="11" y="6" width="1" height="1" fill="#1d2b53"/><rect x="12" y="6" width="1" height="1" fill="#1d2b53"/><rect x="13" y="6" width="1" height="1" fill="#ff77a8"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="1" height="1" fill="#000000"/><rect x="2" y="7" width="1" height="1" fill="#ff77a8"/><rect x="3" y="7" width="1" height="1" fill="#1d2b53"/><rect x="4" y="7" width="1" height="1" fill="#fff1e8"/><rect x="5" y="7" width="1" height="1" fill="#1d2b53"/><rect x="6" y="7" width="1" height="1" fill="#1d2b53"/><rect x="7" y="7" width="1" height="1" fill="#1d2b53"/><rect x="8" y="7" width="1" height="1" fill="#1d2b53"/><rect x="9" y="7" width="1" height="1" fill="#1d2b53"/><rect x="10" y="7" width="1" height="1" fill="#1d2b53"/><rect x="11" y="7" width="1" height="1" fill="#fff1e8"/><rect x="12" y="7" width="1" height="1" fill="#1d2b53"/><rect x="13" y="7" width="1" height="1" fill="#ff77a8"/><rect x="14" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="1" height="1" fill="#ff77a8"/><rect x="3" y="8" width="1" height="1" fill="#1d2b53"/><rect x="4" y="8" width="1" height="1" fill="#fff1e8"/><rect x="5" y="8" width="1" height="1" fill="#1d2b53"/><rect x="6" y="8" width="1" height="1" fill="#1d2b53"/><rect x="7" y="8" width="1" height="1" fill="#1d2b53"/><rect x="8" y="8" width="1" height="1" fill="#1d2b53"/><rect x="9" y="8" width="1" height="1" fill="#1d2b53"/><rect x="10" y="8" width="1" height="1" fill="#1d2b53"/><rect x="11" y="8" width="1" height="1" fill="#fff1e8"/><rect x="12" y="8" width="1" height="1" fill="#1d2b53"/><rect x="13" y="8" width="1" height="1" fill="#ff77a8"/><rect x="14" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="1" height="1" fill="#ff77a8"/><rect x="3" y="9" width="1" height="1" fill="#1d2b53"/><rect x="4" y="9" width="1" height="1" fill="#1d2b53"/><rect x="5" y="9" width="1" height="1" fill="#1d2b53"/><rect x="6" y="9" width="1" height="1" fill="#1d2b53"/><rect x="7" y="9" width="1" height="1" fill="#1d2b53"/><rect x="8" y="9" width="1" height="1" fill="#1d2b53"/><rect x="9" y="9" width="1" height="1" fill="#1d2b53"/><rect x="10" y="9" width="1" height="1" fill="#1d2b53"/><rect x="11" y="9" width="1" height="1" fill="#1d2b53"/><rect x="12" y="9" width="1" height="1" fill="#1d2b53"/><rect x="13" y="9" width="1" height="1" fill="#ff77a8"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="1" height="1" fill="#ff77a8"/><rect x="3" y="10" width="1" height="1" fill="#1d2b53"/><rect x="4" y="10" width="1" height="1" fill="#1d2b53"/><rect x="5" y="10" width="1" height="1" fill="#fff1e8"/><rect x="6" y="10" width="1" height="1" fill="#1d2b53"/><rect x="7" y="10" width="1" height="1" fill="#1d2b53"/><rect x="8" y="10" width="1" height="1" fill="#1d2b53"/><rect x="9" y="10" width="1" height="1" fill="#1d2b53"/><rect x="10" y="10" width="1" height="1" fill="#fff1e8"/><rect x="11" y="10" width="1" height="1" fill="#1d2b53"/><rect x="12" y="10" width="1" height="1" fill="#1d2b53"/><rect x="13" y="10" width="1" height="1" fill="#ff77a8"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="1" height="1" fill="#ff77a8"/><rect x="3" y="11" width="1" height="1" fill="#1d2b53"/><rect x="4" y="11" width="1" height="1" fill="#1d2b53"/><rect x="5" y="11" width="1" height="1" fill="#1d2b53"/><rect x="6" y="11" width="1" height="1" fill="#fff1e8"/><rect x="7" y="11" width="1" height="1" fill="#fff1e8"/><rect x="8" y="11" width="1" height="1" fill="#fff1e8"/><rect x="9" y="11" width="1" height="1" fill="#fff1e8"/><rect x="10" y="11" width="1" height="1" fill="#1d2b53"/><rect x="11" y="11" width="1" height="1" fill="#1d2b53"/><rect x="12" y="11" width="1" height="1" fill="#1d2b53"/><rect x="13" y="11" width="1" height="1" fill="#ff77a8"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="1" y="12" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#ff77a8"/><rect x="3" y="12" width="1" height="1" fill="#1d2b53"/><rect x="4" y="12" width="1" height="1" fill="#1d2b53"/><rect x="5" y="12" width="1" height="1" fill="#1d2b53"/><rect x="6" y="12" width="1" height="1" fill="#1d2b53"/><rect x="7" y="12" width="1" height="1" fill="#1d2b53"/><rect x="8" y="12" width="1" height="1" fill="#1d2b53"/><rect x="9" y="12" width="1" height="1" fill="#1d2b53"/><rect x="10" y="12" width="1" height="1" fill="#1d2b53"/><rect x="11" y="12" width="1" height="1" fill="#1d2b53"/><rect x="12" y="12" width="1" height="1" fill="#1d2b53"/><rect x="13" y="12" width="1" height="1" fill="#ff77a8"/><rect x="14" y="12" width="1" height="1" fill="#000000"/><rect x="1" y="13" width="1" height="1" fill="#000000"/><rect x="2" y="13" width="1" height="1" fill="#ff77a8"/><rect x="3" y="13" width="1" height="1" fill="#ff77a8"/><rect x="4" y="13" width="1" height="1" fill="#ff77a8"/><rect x="5" y="13" width="1" height="1" fill="#ff77a8"/><rect x="6" y="13" width="1" height="1" fill="#ff77a8"/><rect x="7" y="13" width="1" height="1" fill="#ff77a8"/><rect x="8" y="13" width="1" height="1" fill="#ff77a8"/><rect x="9" y="13" width="1" height="1" fill="#ff77a8"/><rect x="10" y="13" width="1" height="1" fill="#ff77a8"/><rect x="11" y="13" width="1" height="1" fill="#ff77a8"/><rect x="12" y="13" width="1" height="1" fill="#ff77a8"/><rect x="13" y="13" width="1" height="1" fill="#ff77a8"/><rect x="14" y="13" width="1" height="1" fill="#000000"/><rect x="1" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="14" width="1" height="1" fill="#000000"/><rect x="3" y="14" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="1" height="1" fill="#000000"/><rect x="5" y="14" width="1" height="1" fill="#000000"/><rect x="6" y="14" width="1" height="1" fill="#000000"/><rect x="7" y="14" width="1" height="1" fill="#000000"/><rect x="8" y="14" width="1" height="1" fill="#000000"/><rect x="9" y="14" width="1" height="1" fill="#000000"/><rect x="10" y="14" width="1" height="1" fill="#000000"/><rect x="11" y="14" width="1" height="1" fill="#000000"/><rect x="12" y="14" width="1" height="1" fill="#000000"/><rect x="13" y="14" width="1" height="1" fill="#000000"/><rect x="14" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="15" width="1" height="1" fill="#000000"/><rect x="3" y="15" width="1" height="1" fill="#000000"/><rect x="12" y="15" width="1" height="1" fill="#000000"/><rect x="13" y="15" width="1" height="1" fill="#000000"/></svg><span>Demotron</span></a>
+  <span class="tag">learn to make games in Picotron!</span>
+</header>
+<main>
+
+<article class="lesson article">
+  <div class="lesson-head"><p class="crumbs"><a href="../index.html">demotron</a> / beginner basics / <span class="lnum">09</span></p><h1>Sprites</h1><p class="summary">The sprite editor, drawing a character, putting it on screen with spr, flipping, a walking animation and transparency.</p></div>
+  <div class="window paper">
+    <div class="titlebar"><span class="tb-title">basics-09-sprites.txt</span></div>
+    <div class="win-body">
+  <section class="article-section"><h2>Shapes and sprites</h2><p>So far everything we've drawn has been shapes: circles, rectangles, lines. Shapes go a long way, but a game soon wants a hero with eyes and feet, a coin that shines, a wall made of bricks. Those are drawn by hand, pixel by pixel, as small pictures called <em>sprites</em>.</p>
+<p>Picotron has a sprite editor built in, so we can draw sprites and use them in code without leaving it. In this lesson we draw a character, put it on screen with one line of code, make it face the way it walks, give it a two-frame walk, and find out why some of its pixels are see-through.</p>
+<p>Every demo here uses a chick we drew for the lesson, but the idea is that you draw your own. Wherever the lesson says "sprite 1", put your character in sprite 1, and the same code draws yours.</p></section>
+  <section class="article-section"><h2>The sprite editor</h2><p>Click the sprites icon at the top right of the screen, the second one along, just after the code editor's <code>()</code>. In a brand new cartridge the sprite editor looks like this:</p>
+<figure class="shot"><img src="shots/editor_new.png" alt="The sprite editor in a new cartridge"><figcaption>The sprite editor in a new cartridge</figcaption></figure>
+<p>The big black square is sprite 1, empty and ready to draw in. Here's the same editor with our chick in it, and its parts numbered:</p>
+<figure class="shot"><img src="shots/editor_parts.png" alt="The sprite editor&#x27;s parts"><figcaption>The sprite editor's parts</figcaption></figure>
+<ol><li><strong>The canvas</strong>, where you draw. It shows the sprite you're working on, blown up big enough to see every pixel.</li><li><strong>The palette</strong>, the colours to draw with. Click one to pick it. The box above the palette shows the picked colour, and the number next to it is that colour's number, the same number <code>cls</code> and <code>circfill</code> take.</li><li><strong>The tools</strong>. From the left: pencil, brush, line, rectangle, circle, fill, stamp, select and pan (the hand).</li><li><strong>The sprite's details</strong>: a small preview, its number and its size.</li><li><strong>The sprite sheet</strong>: all the sprites, eight to a row. Click any square to work on that sprite.</li></ol>
+<p>Here's the row of details up close:</p>
+<figure class="shot"><img src="shots/sprite_info.png" alt="A sprite&#x27;s number, size and flags"><figcaption>A sprite's number, size and flags</figcaption></figure>
+<p>The <strong>number</strong> is the one that matters, because it's how our code finds the picture. Numbers count from 0 in the sheet's top-left corner and go across each row, so the top row is sprites 0 to 7 and the next row starts at 8. The <strong>width</strong> and <strong>height</strong> are the sprite's size: 16 by 16 pixels unless we change them.</p>
+<p>The sheet shows 64 sprites at a time, and the tabs marked 0 to 3 switch between four pages of them: page 0 holds sprites 0 to 63, page 1 holds 64 to 127, and so on, up to 255. The row of eight dots is the sprite's <strong>flags</strong>, which Basics 10 puts to work.</p>
+<p>Sprite 0 has a small white x in it. Picotron puts that there in every new cartridge, and it's best left alone, with our drawings starting at sprite 1. (Maps treat sprite 0 as "no tile here", so a picture in sprite 0 would never show up on a map; Basics 10 has the details.) The editor opens on sprite 1.</p></section>
+  <section class="article-section"><h2>Drawing a sprite</h2><p>The pencil is already picked, so pick a colour and click or drag on the canvas to draw. A few more things save time:</p>
+<ul><li><strong>Fill</strong> (the paint bucket) floods an area of one colour with the colour you've picked. It's the quickest way to colour in a body once its outline is drawn.</li><li><strong>Right-click</strong> any pixel on the canvas to pick up its colour, whichever tool is selected. It saves hunting around the palette.</li><li><strong>Ctrl + Z</strong> undoes the last change, and <strong>Ctrl + Y</strong> redoes it. Undo goes back as far as you like.</li><li><strong>Hold Space and drag</strong> to move the canvas around.</li></ul>
+<p>To rub out a pixel, draw over it with colour 0, the black square in the palette's top-left corner. The section on transparency, near the end, explains why that works as an eraser.</p>
+<p>16 by 16 pixels is enough for a character with a face. Start with a simple outline, fill it in, and add one or two details, such as an eye. Here's our chick, in sprite 1:</p>
+<figure class="shot"><img src="shots/editor_chick.png" alt="Our chick, in sprite 1"><figcaption>Our chick, in sprite 1</figcaption></figure>
+<p>Sprites are part of the cartridge, kept in a file called <code>0.gfx</code> (the name on the editor's tab), so saving the cartridge (Getting Started showed how) saves them with it. There's no need to save before running, though: Ctrl + R always runs the cartridge with the latest drawing.</p></section>
+  <section class="article-section"><h2>spr</h2><p>Here's the program from Basics 4 that steers a player around with the arrow keys. The change is at the bottom: instead of a circle, it draws sprite 1. (It also starts at a slightly different spot, explained below, and clears the screen to green.)</p>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">232</span><span class="op">,</span><span class="op"> </span><span class="num">127</span></span>
+<span class="line"><span class="ln">2</span></span>
+<span class="line"><span class="ln">3</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">8</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">9</span></span>
+<span class="line"><span class="ln">10</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">3</span><span class="op">)</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">13</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>x, y = 232, 127
+
+function _update()
+	if btn(0) then x -= 2 end
+	if btn(1) then x += 2 end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+end
+
+function _draw()
+	cls(3)
+	spr(1, x, y)
+end
+</textarea></div>
+<p><code>spr(1, x, y)</code> draws sprite 1 at <code>x</code>, <code>y</code>. The first number is the sprite number from the editor, and it's the only thing that tells the code which picture we mean. Draw something in sprite 1 and this code draws it; draw something else there and the same code draws that instead.</p>
+<p>Paste it into the code editor and press Ctrl + R, and your character moves around the screen. Here it is with our chick:</p>
+<div class="embed" data-slide="1"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
+<p>There's one difference from the circle. <code>circfill(x, y, ...)</code> puts the circle's <em>centre</em> at <code>x</code>, <code>y</code>, but <code>spr</code> puts the sprite's <em>top-left corner</em> there. A 16 by 16 sprite at <code>232, 127</code> covers the pixels from <code>232, 127</code> to <code>247, 142</code>, which is why we start at 232 rather than 240: it puts the middle of the sprite near the middle of the screen.</p>
+<p>The chick also looks small. Picotron's screen is 480 pixels wide, so a 16 pixel sprite is about a thirtieth of it. That's normal for a Picotron game, and it leaves plenty of room for a world to explore.</p></section>
+  <section class="article-section"><h2>Flipping</h2><p>Our chick faces right even while it walks left, which looks wrong. We could draw a second sprite facing left, but there's no need: <code>spr</code> can flip the one we have.</p>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">232</span><span class="op">,</span><span class="op"> </span><span class="num">127</span></span>
+<span class="line"><span class="ln">2</span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">15</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">16</span></span>
+<span class="line"><span class="ln">17</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">3</span><span class="op">)</span></span>
+<span class="line"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>left<span class="op">)</span></span>
+<span class="line"><span class="ln">20</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>x, y = 232, 127
+left = false
+
+function _update()
+	if btn(0) then
+		x -= 2
+		left = true
+	end
+	if btn(1) then
+		x += 2
+		left = false
+	end
+	if btn(2) then y -= 2 end
+	if btn(3) then y += 2 end
+end
+
+function _draw()
+	cls(3)
+	spr(1, x, y, left)
+end
+</textarea></div>
+<p><code>spr</code> takes two more values after <code>x</code> and <code>y</code>: <code>flip_x</code> and <code>flip_y</code>. When <code>flip_x</code> is <code>true</code>, the sprite is drawn mirrored left to right. When it's <code>false</code> (or missing, as before), it's drawn the way it was drawn in the editor.</p>
+<p>The obvious way to choose is to ask <code>btn(0)</code> every frame and flip while left is held. That breaks as soon as the key comes up: with no key held, <code>btn</code> can't tell us which way the chick <em>was</em> going, so it would snap back to facing right. So we keep a variable, <code>left</code>, that remembers which way the chick faces. Pressing left sets it to <code>true</code> and pressing right sets it back to <code>false</code>. Up and down don't touch it, and neither does letting go of the keys, so the chick keeps facing whichever way it last walked.</p>
+<p><code>if btn(0)</code> now has more than one line inside it. Everything between <code>then</code> and its <code>end</code> runs when the button is held.</p>
+<div class="embed" data-slide="2"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
+<p>This is why I draw characters facing <em>right</em>: then <code>flip_x = true</code> always means "facing left", which is easy to remember.</p></section>
+  <section class="article-section"><h2>Animation</h2><p>A character that glides along with its feet still looks like a cut-out. Animation is just a few pictures shown one after another, quickly, so we give the chick two more: sprite 2 with one foot forward and sprite 3 with the other.</p>
+<p>Start each one from a copy of the character. Click sprite 1 in the sheet and press <strong>Ctrl + C</strong> to copy it, then click sprite 2 and press <strong>Ctrl + V</strong> to paste. Do the same for sprite 3, then redraw the feet in each one. (Q and W step to the previous and next sprite, which is handy for flicking between frames to compare them.) Here's our sprite 2:</p>
+<figure class="shot"><img src="shots/editor_frame2.png" alt="Sprite 2, with its feet apart"><figcaption>Sprite 2, with its feet apart</figcaption></figure>
+<p>In the code, the chick swaps between sprites 2 and 3 while it's moving, and goes back to sprite 1, standing still, when it stops.</p>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">232</span><span class="op">,</span><span class="op"> </span><span class="num">127</span></span>
+<span class="line"><span class="ln">2</span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
+<span class="line"><span class="ln">3</span>frame<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">4</span></span>
+<span class="line"><span class="ln">5</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span>moving<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>moving<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>moving<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">2</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span>moving<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btn</span><span class="op">(</span><span class="num">3</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span>moving<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">true</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">19</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>moving<span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="com">-- 2, 3, 2, 3... eight changes a second</span></span>
+<span class="line"><span class="ln">22</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>frame<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="bi">flr</span><span class="op">(</span><span class="bi">t</span><span class="op">(</span><span class="op">)</span><span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">8</span><span class="op">)</span><span class="op"> </span><span class="op">%</span><span class="op"> </span><span class="num">2</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="kw">else</span></span>
+<span class="line"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>frame<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">26</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">27</span></span>
+<span class="line"><span class="ln">28</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">29</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">3</span><span class="op">)</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span>frame<span class="op">,</span><span class="op"> </span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>left<span class="op">)</span></span>
+<span class="line"><span class="ln">31</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>x, y = 232, 127
+left = false
+frame = 1
+
+function _update()
+	moving = false
+	if btn(0) then
+		x -= 2
+		left = true
+		moving = true
+	end
+	if btn(1) then
+		x += 2
+		left = false
+		moving = true
+	end
+	if btn(2) then y -= 2 moving = true end
+	if btn(3) then y += 2 moving = true end
+
+	if moving then
+		-- 2, 3, 2, 3... eight changes a second
+		frame = 2 + flr(t() * 8) % 2
+	else
+		frame = 1
+	end
+end
+
+function _draw()
+	cls(3)
+	spr(frame, x, y, left)
+end
+</textarea></div>
+<p>The sprite number doesn't have to be written straight into <code>spr</code>. It can be a variable, <code>frame</code>, and that's what makes animation possible.</p>
+<p>Each frame, <code>moving</code> starts out <code>false</code>, and any arrow that's held sets it to <code>true</code>. Then we pick the picture. The line that does the work is <code>frame = 2 + flr(t() * 8) % 2</code>, which reads best from the inside out:</p>
+<ul><li><code>t()</code> is the number of seconds since the program started (Basics 2), so <code>t() * 8</code> counts up eight times as fast: 8 every second.</li><li><code>flr</code> rounds it down to a whole number: 0, 1, 2, 3, 4 ... with each number lasting an eighth of a second.</li><li><code>% 2</code> is the remainder after dividing by 2 (Basics 3), which turns that count into 0, 1, 0, 1, 0, 1 ...</li><li><code>2 +</code> turns that into 2, 3, 2, 3, 2, 3 ...: exactly our two walking sprites.</li></ul>
+<div class="embed" data-slide="3"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
+<p>The 8 sets how fast the feet move. Try a few other numbers in your own copy: too slow and the chick tiptoes; too fast and its feet are a blur.</p></section>
+  <section class="article-section"><h2>Transparency</h2><p>Look closely at the chick in any of the demos above. Its sprite is a 16 by 16 square, but there's no black square around it, only the green background. That's because <code>spr</code> skips every pixel of colour 0. Colour 0 is <em>transparent</em>: wherever a sprite has it, whatever was already on the screen shows through. It's also why drawing with colour 0 works as an eraser in the sprite editor.</p>
+<p><code>palt</code> (short for "palette transparency") changes which colours are skipped. Here are three chicks drawn over stripes, so we can see exactly which pixels get drawn:</p>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">2</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="com">-- stripes, so we can see what&#x27;s behind</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="num">29</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>i<span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">16</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span>i<span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">16</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">7</span><span class="op">,</span><span class="op"> </span><span class="num">269</span><span class="op">,</span><span class="op"> </span><span class="num">13</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">7</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="com">-- normally, colour 0 isn&#x27;t drawn</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">112</span><span class="op">,</span><span class="op"> </span><span class="num">112</span><span class="op">)</span></span>
+<span class="line"><span class="ln">10</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="com">-- now colour 0 is drawn, like any other</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="bi">palt</span><span class="op">(</span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="kw">false</span><span class="op">)</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">232</span><span class="op">,</span><span class="op"> </span><span class="num">112</span><span class="op">)</span></span>
+<span class="line"><span class="ln">14</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="com">-- and colour 10 (yellow) isn&#x27;t</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">palt</span><span class="op">(</span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="kw">true</span><span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="bi">palt</span><span class="op">(</span><span class="num">10</span><span class="op">,</span><span class="op"> </span><span class="kw">true</span><span class="op">)</span></span>
+<span class="line"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">spr</span><span class="op">(</span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">352</span><span class="op">,</span><span class="op"> </span><span class="num">112</span><span class="op">)</span></span>
+<span class="line"><span class="ln">19</span></span>
+<span class="line"><span class="ln">20</span><span class="op"> </span><span class="op"> </span><span class="com">-- back to normal for next frame</span></span>
+<span class="line"><span class="ln">21</span><span class="op"> </span><span class="op"> </span><span class="bi">palt</span><span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">22</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;normal&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">105</span><span class="op">,</span><span class="op"> </span><span class="num">136</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;palt(0, false)&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">205</span><span class="op">,</span><span class="op"> </span><span class="num">136</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;palt(10, true)&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">325</span><span class="op">,</span><span class="op"> </span><span class="num">136</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">26</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>function _draw()
+	cls(1)
+	-- stripes, so we can see what&#x27;s behind
+	for i = 0, 29 do
+		rectfill(i * 16, 0, i * 16 + 7, 269, 13)
+	end
+
+	-- normally, colour 0 isn&#x27;t drawn
+	spr(1, 112, 112)
+
+	-- now colour 0 is drawn, like any other
+	palt(0, false)
+	spr(1, 232, 112)
+
+	-- and colour 10 (yellow) isn&#x27;t
+	palt(0, true)
+	palt(10, true)
+	spr(1, 352, 112)
+
+	-- back to normal for next frame
+	palt()
+
+	print(&quot;normal&quot;, 105, 136, 7)
+	print(&quot;palt(0, false)&quot;, 205, 136, 7)
+	print(&quot;palt(10, true)&quot;, 325, 136, 7)
+end
+</textarea></div>
+
+<div class="embed" data-slide="4"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
+<p><code>palt(colour, true)</code> makes a colour transparent and <code>palt(colour, false)</code> makes it solid again. The setting sticks, for every sprite drawn after it, until it's changed, so the last line puts things back with <code>palt()</code>. That resets to normal: colour 0 transparent and every other colour solid.</p>
+<p>The left chick is drawn normally. The middle one has colour 0 made solid, so its black background box appears. The right one has colour 0 transparent again, but yellow (colour 10) transparent too, so only the chick's outline, eye, cheek, beak and feet are left.</p>
+<p>This matters when drawing. A character outlined in colour 0 loses its outline in the game. Outline with a dark colour that isn't 0, such as dark blue (colour 1) or a dark brown, and keep colour 0 for the space around the character.</p></section>
+  <section class="article-section"><h2>Putting it together</h2><p>In this lesson we added:</p>
+<ul><li>the sprite editor, and sprite numbers counting from 0 across the sheet</li><li><code>spr(n, x, y)</code>, which draws a sprite with its top-left corner at <code>x</code>, <code>y</code></li><li><code>flip_x</code>, and a variable that remembers which way the character faces</li><li>a walking animation, by choosing the sprite number from <code>t()</code></li><li>colour 0 as transparent, and <code>palt</code> to change which colours are skipped</li></ul>
+<p>Next, Basics 10 lays sprites out as tiles in the map editor and builds a level for the chick to walk around.</p>
+<div class="try"><h3>Try this</h3>
+<ul><li>Draw an enemy in sprite 4 and make it chase your character: each frame, move its <code>x</code> a little towards the player's <code>x</code>, and its <code>y</code> towards the player's <code>y</code>. You'll need its own two variables, and an <code>if</code> for each direction (Basics 5). Can you make it face the way it's going too?</li><li>In the first demo, change each <code>2</code> in <code>_update</code> to <code>0.5</code>, and print <code>x</code> on the screen. Before you run it, predict: when <code>x</code> is 232.5, where will <code>spr</code> draw the sprite? Watch the chick and the number together, and work out what <code>spr</code> does with the part after the dot.</li><li><code>pal</code>, <code>palt</code>'s cousin, swaps one colour for another as you draw: <code>pal(10, 12)</code> before <code>spr</code> turns every yellow pixel blue. Make a second, differently coloured player from the same sprite. What happens to the <em>first</em> player if you forget to put the colours back with <code>pal()</code>?</li><li>Give your character four directions: draw it facing up and facing down in sprites 5 and 6, and choose the sprite by the last arrow pressed. Why do you only need to draw three directions, and not four?</li></ul>
+</div></section>
+    </div>
+  </div>
+  <nav class="lessons"><a class="px-btn" href="../basics-08-functions/index.html">&larr; Functions and files</a> <a class="px-btn" href="../index.html">All lessons</a> <a class="px-btn" href="../basics-10-maps/index.html">Maps &rarr;</a></nav>
+  <p class="built">Built with Picotron 0.3.0d.</p>
+</article>
+<script src="../static/article.js"></script>
+
+</main>
+<footer class="site">
+  <p>Stuck? Ask in <a href="https://discord.gg/XQStcpPeH4">#help on the Picotron Discord</a>.
+  Questions about Demotron itself: DM <strong>Rybar</strong> there.</p>
+  <p class="small">Picotron is made by Lexaloffle. Demotron is a fan-made school for it.</p>
+</footer>
+</body>
+</html>

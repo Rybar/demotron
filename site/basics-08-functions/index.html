@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functions and files · Demotron</title>
+<meta name="description" content="Defining functions, parameters, return values, local variables, functions as values, and splitting a game across files.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Jersey+10&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../static/demotron.css">
+</head>
+<body class="wide">
+<header class="site">
+  <a href="../index.html" class="brand"><svg class="mascot" width="32" height="32" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect x="4" y="0" width="1" height="1" fill="#000000"/><rect x="11" y="0" width="1" height="1" fill="#000000"/><rect x="5" y="1" width="1" height="1" fill="#000000"/><rect x="10" y="1" width="1" height="1" fill="#000000"/><rect x="6" y="2" width="1" height="1" fill="#000000"/><rect x="9" y="2" width="1" height="1" fill="#000000"/><rect x="7" y="3" width="1" height="1" fill="#000000"/><rect x="8" y="3" width="1" height="1" fill="#000000"/><rect x="1" y="4" width="1" height="1" fill="#000000"/><rect x="2" y="4" width="1" height="1" fill="#000000"/><rect x="3" y="4" width="1" height="1" fill="#000000"/><rect x="4" y="4" width="1" height="1" fill="#000000"/><rect x="5" y="4" width="1" height="1" fill="#000000"/><rect x="6" y="4" width="1" height="1" fill="#000000"/><rect x="7" y="4" width="1" height="1" fill="#000000"/><rect x="8" y="4" width="1" height="1" fill="#000000"/><rect x="9" y="4" width="1" height="1" fill="#000000"/><rect x="10" y="4" width="1" height="1" fill="#000000"/><rect x="11" y="4" width="1" height="1" fill="#000000"/><rect x="12" y="4" width="1" height="1" fill="#000000"/><rect x="13" y="4" width="1" height="1" fill="#000000"/><rect x="14" y="4" width="1" height="1" fill="#000000"/><rect x="1" y="5" width="1" height="1" fill="#000000"/><rect x="2" y="5" width="1" height="1" fill="#ff77a8"/><rect x="3" y="5" width="1" height="1" fill="#ff77a8"/><rect x="4" y="5" width="1" height="1" fill="#ff77a8"/><rect x="5" y="5" width="1" height="1" fill="#ff77a8"/><rect x="6" y="5" width="1" height="1" fill="#ff77a8"/><rect x="7" y="5" width="1" height="1" fill="#ff77a8"/><rect x="8" y="5" width="1" height="1" fill="#ff77a8"/><rect x="9" y="5" width="1" height="1" fill="#ff77a8"/><rect x="10" y="5" width="1" height="1" fill="#ff77a8"/><rect x="11" y="5" width="1" height="1" fill="#ff77a8"/><rect x="12" y="5" width="1" height="1" fill="#ff77a8"/><rect x="13" y="5" width="1" height="1" fill="#ff77a8"/><rect x="14" y="5" width="1" height="1" fill="#000000"/><rect x="1" y="6" width="1" height="1" fill="#000000"/><rect x="2" y="6" width="1" height="1" fill="#ff77a8"/><rect x="3" y="6" width="1" height="1" fill="#1d2b53"/><rect x="4" y="6" width="1" height="1" fill="#1d2b53"/><rect x="5" y="6" width="1" height="1" fill="#1d2b53"/><rect x="6" y="6" width="1" height="1" fill="#1d2b53"/><rect x="7" y="6" width="1" height="1" fill="#1d2b53"/><rect x="8" y="6" width="1" height="1" fill="#1d2b53"/><rect x="9" y="6" width="1" height="1" fill="#1d2b53"/><rect x="10" y="6" width="1" height="1" fill="#1d2b53"/><rect x="11" y="6" width="1" height="1" fill="#1d2b53"/><rect x="12" y="6" width="1" height="1" fill="#1d2b53"/><rect x="13" y="6" width="1" height="1" fill="#ff77a8"/><rect x="14" y="6" width="1" height="1" fill="#000000"/><rect x="1" y="7" width="1" height="1" fill="#000000"/><rect x="2" y="7" width="1" height="1" fill="#ff77a8"/><rect x="3" y="7" width="1" height="1" fill="#1d2b53"/><rect x="4" y="7" width="1" height="1" fill="#fff1e8"/><rect x="5" y="7" width="1" height="1" fill="#1d2b53"/><rect x="6" y="7" width="1" height="1" fill="#1d2b53"/><rect x="7" y="7" width="1" height="1" fill="#1d2b53"/><rect x="8" y="7" width="1" height="1" fill="#1d2b53"/><rect x="9" y="7" width="1" height="1" fill="#1d2b53"/><rect x="10" y="7" width="1" height="1" fill="#1d2b53"/><rect x="11" y="7" width="1" height="1" fill="#fff1e8"/><rect x="12" y="7" width="1" height="1" fill="#1d2b53"/><rect x="13" y="7" width="1" height="1" fill="#ff77a8"/><rect x="14" y="7" width="1" height="1" fill="#000000"/><rect x="1" y="8" width="1" height="1" fill="#000000"/><rect x="2" y="8" width="1" height="1" fill="#ff77a8"/><rect x="3" y="8" width="1" height="1" fill="#1d2b53"/><rect x="4" y="8" width="1" height="1" fill="#fff1e8"/><rect x="5" y="8" width="1" height="1" fill="#1d2b53"/><rect x="6" y="8" width="1" height="1" fill="#1d2b53"/><rect x="7" y="8" width="1" height="1" fill="#1d2b53"/><rect x="8" y="8" width="1" height="1" fill="#1d2b53"/><rect x="9" y="8" width="1" height="1" fill="#1d2b53"/><rect x="10" y="8" width="1" height="1" fill="#1d2b53"/><rect x="11" y="8" width="1" height="1" fill="#fff1e8"/><rect x="12" y="8" width="1" height="1" fill="#1d2b53"/><rect x="13" y="8" width="1" height="1" fill="#ff77a8"/><rect x="14" y="8" width="1" height="1" fill="#000000"/><rect x="1" y="9" width="1" height="1" fill="#000000"/><rect x="2" y="9" width="1" height="1" fill="#ff77a8"/><rect x="3" y="9" width="1" height="1" fill="#1d2b53"/><rect x="4" y="9" width="1" height="1" fill="#1d2b53"/><rect x="5" y="9" width="1" height="1" fill="#1d2b53"/><rect x="6" y="9" width="1" height="1" fill="#1d2b53"/><rect x="7" y="9" width="1" height="1" fill="#1d2b53"/><rect x="8" y="9" width="1" height="1" fill="#1d2b53"/><rect x="9" y="9" width="1" height="1" fill="#1d2b53"/><rect x="10" y="9" width="1" height="1" fill="#1d2b53"/><rect x="11" y="9" width="1" height="1" fill="#1d2b53"/><rect x="12" y="9" width="1" height="1" fill="#1d2b53"/><rect x="13" y="9" width="1" height="1" fill="#ff77a8"/><rect x="14" y="9" width="1" height="1" fill="#000000"/><rect x="1" y="10" width="1" height="1" fill="#000000"/><rect x="2" y="10" width="1" height="1" fill="#ff77a8"/><rect x="3" y="10" width="1" height="1" fill="#1d2b53"/><rect x="4" y="10" width="1" height="1" fill="#1d2b53"/><rect x="5" y="10" width="1" height="1" fill="#fff1e8"/><rect x="6" y="10" width="1" height="1" fill="#1d2b53"/><rect x="7" y="10" width="1" height="1" fill="#1d2b53"/><rect x="8" y="10" width="1" height="1" fill="#1d2b53"/><rect x="9" y="10" width="1" height="1" fill="#1d2b53"/><rect x="10" y="10" width="1" height="1" fill="#fff1e8"/><rect x="11" y="10" width="1" height="1" fill="#1d2b53"/><rect x="12" y="10" width="1" height="1" fill="#1d2b53"/><rect x="13" y="10" width="1" height="1" fill="#ff77a8"/><rect x="14" y="10" width="1" height="1" fill="#000000"/><rect x="1" y="11" width="1" height="1" fill="#000000"/><rect x="2" y="11" width="1" height="1" fill="#ff77a8"/><rect x="3" y="11" width="1" height="1" fill="#1d2b53"/><rect x="4" y="11" width="1" height="1" fill="#1d2b53"/><rect x="5" y="11" width="1" height="1" fill="#1d2b53"/><rect x="6" y="11" width="1" height="1" fill="#fff1e8"/><rect x="7" y="11" width="1" height="1" fill="#fff1e8"/><rect x="8" y="11" width="1" height="1" fill="#fff1e8"/><rect x="9" y="11" width="1" height="1" fill="#fff1e8"/><rect x="10" y="11" width="1" height="1" fill="#1d2b53"/><rect x="11" y="11" width="1" height="1" fill="#1d2b53"/><rect x="12" y="11" width="1" height="1" fill="#1d2b53"/><rect x="13" y="11" width="1" height="1" fill="#ff77a8"/><rect x="14" y="11" width="1" height="1" fill="#000000"/><rect x="1" y="12" width="1" height="1" fill="#000000"/><rect x="2" y="12" width="1" height="1" fill="#ff77a8"/><rect x="3" y="12" width="1" height="1" fill="#1d2b53"/><rect x="4" y="12" width="1" height="1" fill="#1d2b53"/><rect x="5" y="12" width="1" height="1" fill="#1d2b53"/><rect x="6" y="12" width="1" height="1" fill="#1d2b53"/><rect x="7" y="12" width="1" height="1" fill="#1d2b53"/><rect x="8" y="12" width="1" height="1" fill="#1d2b53"/><rect x="9" y="12" width="1" height="1" fill="#1d2b53"/><rect x="10" y="12" width="1" height="1" fill="#1d2b53"/><rect x="11" y="12" width="1" height="1" fill="#1d2b53"/><rect x="12" y="12" width="1" height="1" fill="#1d2b53"/><rect x="13" y="12" width="1" height="1" fill="#ff77a8"/><rect x="14" y="12" width="1" height="1" fill="#000000"/><rect x="1" y="13" width="1" height="1" fill="#000000"/><rect x="2" y="13" width="1" height="1" fill="#ff77a8"/><rect x="3" y="13" width="1" height="1" fill="#ff77a8"/><rect x="4" y="13" width="1" height="1" fill="#ff77a8"/><rect x="5" y="13" width="1" height="1" fill="#ff77a8"/><rect x="6" y="13" width="1" height="1" fill="#ff77a8"/><rect x="7" y="13" width="1" height="1" fill="#ff77a8"/><rect x="8" y="13" width="1" height="1" fill="#ff77a8"/><rect x="9" y="13" width="1" height="1" fill="#ff77a8"/><rect x="10" y="13" width="1" height="1" fill="#ff77a8"/><rect x="11" y="13" width="1" height="1" fill="#ff77a8"/><rect x="12" y="13" width="1" height="1" fill="#ff77a8"/><rect x="13" y="13" width="1" height="1" fill="#ff77a8"/><rect x="14" y="13" width="1" height="1" fill="#000000"/><rect x="1" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="14" width="1" height="1" fill="#000000"/><rect x="3" y="14" width="1" height="1" fill="#000000"/><rect x="4" y="14" width="1" height="1" fill="#000000"/><rect x="5" y="14" width="1" height="1" fill="#000000"/><rect x="6" y="14" width="1" height="1" fill="#000000"/><rect x="7" y="14" width="1" height="1" fill="#000000"/><rect x="8" y="14" width="1" height="1" fill="#000000"/><rect x="9" y="14" width="1" height="1" fill="#000000"/><rect x="10" y="14" width="1" height="1" fill="#000000"/><rect x="11" y="14" width="1" height="1" fill="#000000"/><rect x="12" y="14" width="1" height="1" fill="#000000"/><rect x="13" y="14" width="1" height="1" fill="#000000"/><rect x="14" y="14" width="1" height="1" fill="#000000"/><rect x="2" y="15" width="1" height="1" fill="#000000"/><rect x="3" y="15" width="1" height="1" fill="#000000"/><rect x="12" y="15" width="1" height="1" fill="#000000"/><rect x="13" y="15" width="1" height="1" fill="#000000"/></svg><span>Demotron</span></a>
+  <span class="tag">learn to make games in Picotron!</span>
+</header>
+<main>
+
+<article class="lesson">
+  <div class="lesson-head"><p class="crumbs"><a href="../index.html">demotron</a> / beginner basics / <span class="lnum">08</span></p><h1>Functions and files</h1><p class="summary">Defining functions, parameters, return values, local variables, functions as values, and splitting a game across files.</p></div>
+  <div class="workbench">
+    <div class="codepane"><div class="codepane-inner">
+      <div class="code" data-slide="1" hidden><div class="codehead"><span class="file">demos/1_name.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- one recipe, four faces</span></span>
+<span class="line"><span class="ln">2</span><span class="kw">function</span><span class="op"> </span>draw_face<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">20</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">7</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span><span class="num">3</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">7</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">5</span><span class="op">,</span><span class="op"> </span><span class="num">3</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">7</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">8</span></span>
+<span class="line dim"><span class="ln">9</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">11</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">90</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">12</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">190</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">13</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">290</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">390</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">40</span><span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="bi">sin</span><span class="op">(</span><span class="bi">t</span><span class="op">(</span><span class="op">)</span><span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">)</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- one recipe, four faces
+function draw_face(x, y)
+	circfill(x, y, 20, 10)
+	circfill(x - 7, y - 5, 3, 0)
+	circfill(x + 7, y - 5, 3, 0)
+	line(x - 8, y + 8, x + 8, y + 8, 0)
+end
+
+function _draw()
+	cls(1)
+	draw_face(90, 135)
+	draw_face(190, 135)
+	draw_face(290, 135)
+	draw_face(390, 135 + 40 * sin(t() / 2))
+end
+</textarea></div>
+      <div class="code" data-slide="2" hidden><div class="codehead"><span class="file">demos/2_params.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- the same recipe, with more inputs</span></span>
+<span class="line"><span class="ln">2</span>big<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="big">30</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>draw_face<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>e<span class="op"> </span><span class="op">=</span><span class="op"> </span>size<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">3</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">10</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">11</span></span>
+<span class="line"><span class="ln">12</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">13</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">14</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">70</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span><span class="num">20</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">190</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span>big<span class="op">,</span><span class="op"> </span><span class="num">9</span><span class="op">)</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">340</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span><span class="num">50</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span><span class="num">440</span><span class="op">,</span><span class="op"> </span><span class="num">50</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span></span>
+<span class="line"><span class="ln">18</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- the same recipe, with more inputs
+big = 30
+
+function draw_face(x, y, size, col)
+	circfill(x, y, size, col)
+	local e = size / 3
+	circfill(x - e, y - e, e / 2, 0)
+	circfill(x + e, y - e, e / 2, 0)
+	line(x - e, y + e, x + e, y + e, 0)
+end
+
+function _draw()
+	cls(1)
+	draw_face(70, 135, 20, 10)
+	draw_face(190, 135, big, 9)
+	draw_face(340, 135, 50, 12)
+	draw_face(440, 50, 10, 8)
+end
+</textarea><div class="sliders"><label class="slider"><span>big</span><input type="range" data-var="big" min="5" max="60" step="1" value="30"><output>30</output></label></div></div>
+      <div class="code" data-slide="3" hidden><div class="codehead"><span class="file">demos/3_return.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- a function that answers with a number</span></span>
+<span class="line dim"><span class="ln">2</span>size<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="live" data-var="size">40</span></span>
+<span class="line dim"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>dist<span class="op">(</span>x1<span class="op">,</span><span class="op"> </span>y1<span class="op">,</span><span class="op"> </span>x2<span class="op">,</span><span class="op"> </span>y2<span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span><span class="bi">sqrt</span><span class="op">(</span><span class="op">(</span>x2<span class="op"> </span><span class="op">-</span><span class="op"> </span>x1<span class="op">)</span><span class="op"> </span><span class="op">^</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="op">(</span>y2<span class="op"> </span><span class="op">-</span><span class="op"> </span>y1<span class="op">)</span><span class="op"> </span><span class="op">^</span><span class="op"> </span><span class="num">2</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">7</span></span>
+<span class="line dim"><span class="ln">8</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span>mx<span class="op">,</span><span class="op"> </span>my<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mouse</span><span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span>d<span class="op"> </span><span class="op">=</span><span class="op"> </span>dist<span class="op">(</span>mx<span class="op">,</span><span class="op"> </span>my<span class="op">,</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">11</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">12</span></span>
+<span class="line dim"><span class="ln">13</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">14</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="op"> </span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">12</span></span>
+<span class="line dim"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span>d<span class="op"> </span><span class="op">&lt;</span><span class="op"> </span>size<span class="op"> </span><span class="kw">then</span><span class="op"> </span>col<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">8</span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line dim"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span>mx<span class="op">,</span><span class="op"> </span>my<span class="op">,</span><span class="op"> </span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">19</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;distance: &quot;</span><span class="op">.</span><span class="op">.</span><span class="bi">flr</span><span class="op">(</span>d<span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">20</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- a function that answers with a number
+size = 40
+
+function dist(x1, y1, x2, y2)
+	return sqrt((x2 - x1) ^ 2 + (y2 - y1) ^ 2)
+end
+
+function _update()
+	mx, my = mouse()
+	d = dist(mx, my, 240, 135)
+end
+
+function _draw()
+	cls(1)
+	col = 12
+	if d &lt; size then col = 8 end
+	circfill(240, 135, size, col)
+	line(mx, my, 240, 135, 6)
+	print(&quot;distance: &quot;..flr(d), 8, 8, 7)
+end
+</textarea><div class="sliders"><label class="slider"><span>size</span><input type="range" data-var="size" min="10" max="120" step="5" value="40"><output>40</output></label></div></div>
+      <div class="code" data-slide="4" hidden><div class="codehead"><span class="file">demos/4_local.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- two counters, both called n</span></span>
+<span class="line"><span class="ln">2</span>n<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">0</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>count_global<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span>n<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span>n</span>
+<span class="line"><span class="ln">7</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">8</span></span>
+<span class="line"><span class="ln">9</span><span class="kw">function</span><span class="op"> </span>count_local<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>n<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">0</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span>n<span class="op"> </span><span class="op">+</span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">12</span><span class="op"> </span><span class="op"> </span><span class="kw">return</span><span class="op"> </span>n</span>
+<span class="line"><span class="ln">13</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">14</span></span>
+<span class="line dim"><span class="ln">15</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;global n: &quot;</span><span class="op">.</span><span class="op">.</span>count_global<span class="op">(</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">180</span><span class="op">,</span><span class="op"> </span><span class="num">120</span><span class="op">,</span><span class="op"> </span><span class="num">11</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">18</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;local n:  &quot;</span><span class="op">.</span><span class="op">.</span>count_local<span class="op">(</span><span class="op">)</span><span class="op">,</span><span class="op"> </span><span class="num">180</span><span class="op">,</span><span class="op"> </span><span class="num">140</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">19</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- two counters, both called n
+n = 0
+
+function count_global()
+	n += 1
+	return n
+end
+
+function count_local()
+	local n = 0
+	n += 1
+	return n
+end
+
+function _draw()
+	cls(1)
+	print(&quot;global n: &quot;..count_global(), 180, 120, 11)
+	print(&quot;local n:  &quot;..count_local(), 180, 140, 8)
+end
+</textarea></div>
+      <div class="code" data-slide="5" hidden><div class="codehead"><span class="file">demos/5_values.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line dim"><span class="ln">1</span><span class="com">-- three drawing functions, kept in a list</span></span>
+<span class="line dim"><span class="ln">2</span><span class="kw">function</span><span class="op"> </span>dots<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line dim"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">0</span><span class="op">,</span><span class="op"> </span><span class="num">5</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line dim"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">75</span><span class="op"> </span><span class="op">+</span><span class="op"> </span>i<span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">30</span><span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">6</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">7</span></span>
+<span class="line dim"><span class="ln">8</span><span class="kw">function</span><span class="op"> </span>rings<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line dim"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>r<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">10</span><span class="op">,</span><span class="op"> </span><span class="num">70</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line dim"><span class="ln">10</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="bi">circ</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>r<span class="op">,</span><span class="op"> </span><span class="num">9</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">11</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">12</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">13</span></span>
+<span class="line dim"><span class="ln">14</span><span class="kw">function</span><span class="op"> </span>cross<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">)</span></span>
+<span class="line dim"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">70</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">70</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">16</span><span class="op"> </span><span class="op"> </span><span class="bi">rectfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="num">70</span><span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">70</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span></span>
+<span class="line dim"><span class="ln">17</span><span class="kw">end</span></span>
+<span class="line dim"><span class="ln">18</span></span>
+<span class="line"><span class="ln">19</span>styles<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">{</span>dots<span class="op">,</span><span class="op"> </span>rings<span class="op">,</span><span class="op"> </span>cross<span class="op">}</span></span>
+<span class="line"><span class="ln">20</span>pick<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">21</span></span>
+<span class="line"><span class="ln">22</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">23</span><span class="op"> </span><span class="op"> </span><span class="kw">if</span><span class="op"> </span><span class="bi">btnp</span><span class="op">(</span><span class="num">4</span><span class="op">)</span><span class="op"> </span><span class="kw">then</span></span>
+<span class="line"><span class="ln">24</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>pick<span class="op"> </span><span class="op">=</span><span class="op"> </span>pick<span class="op"> </span><span class="op">%</span><span class="op"> </span><span class="op">#</span>styles<span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">1</span></span>
+<span class="line"><span class="ln">25</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">26</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">27</span></span>
+<span class="line"><span class="ln">28</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">29</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">30</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>f<span class="op"> </span><span class="op">=</span><span class="op"> </span>styles<span class="op">[</span>pick<span class="op">]</span></span>
+<span class="line"><span class="ln">31</span><span class="op"> </span><span class="op"> </span>f<span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">135</span><span class="op">)</span></span>
+<span class="line"><span class="ln">32</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;style &quot;</span><span class="op">.</span><span class="op">.</span>pick<span class="op">.</span><span class="op">.</span><span class="str">&quot; of &quot;</span><span class="op">.</span><span class="op">.</span><span class="op">#</span>styles<span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">33</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;press o (z) for the next one&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">,</span><span class="op"> </span><span class="num">20</span><span class="op">,</span><span class="op"> </span><span class="num">6</span><span class="op">)</span></span>
+<span class="line"><span class="ln">34</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- three drawing functions, kept in a list
+function dots(x, y)
+	for i = 0, 5 do
+		circfill(x - 75 + i * 30, y, 10, 12)
+	end
+end
+
+function rings(x, y)
+	for r = 10, 70, 12 do
+		circ(x, y, r, 9)
+	end
+end
+
+function cross(x, y)
+	rectfill(x - 70, y - 8, x + 70, y + 8, 8)
+	rectfill(x - 8, y - 70, x + 8, y + 70, 8)
+end
+
+styles = {dots, rings, cross}
+pick = 1
+
+function _update()
+	if btnp(4) then
+		pick = pick % #styles + 1
+	end
+end
+
+function _draw()
+	cls(1)
+	local f = styles[pick]
+	f(240, 135)
+	print(&quot;style &quot;..pick..&quot; of &quot;..#styles, 8, 8, 7)
+	print(&quot;press o (z) for the next one&quot;, 8, 20, 6)
+end
+</textarea></div>
+      <div class="code" data-slide="6" hidden><div class="codehead"><span class="file">demos/6_files.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- main.lua: the faces live in faces.lua</span></span>
+<span class="line"><span class="ln">2</span>include<span class="op">(</span><span class="str">&quot;faces.lua&quot;</span><span class="op">)</span></span>
+<span class="line"><span class="ln">3</span></span>
+<span class="line"><span class="ln">4</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="kw">for</span><span class="op"> </span>i<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">1</span><span class="op">,</span><span class="op"> </span><span class="num">5</span><span class="op"> </span><span class="kw">do</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">135</span><span class="op"> </span><span class="op">+</span><span class="op"> </span><span class="num">30</span><span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="bi">sin</span><span class="op">(</span><span class="bi">t</span><span class="op">(</span><span class="op">)</span><span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="op">+</span><span class="op"> </span>i<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">5</span><span class="op">)</span></span>
+<span class="line"><span class="ln">8</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span>i<span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">80</span><span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op"> </span><span class="op">+</span><span class="op"> </span>i<span class="op"> </span><span class="op">*</span><span class="op"> </span><span class="num">4</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op"> </span><span class="op">+</span><span class="op"> </span>i<span class="op">)</span></span>
+<span class="line"><span class="ln">9</span><span class="op"> </span><span class="op"> </span><span class="kw">end</span></span>
+<span class="line"><span class="ln">10</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- main.lua: the faces live in faces.lua
+include(&quot;faces.lua&quot;)
+
+function _draw()
+	cls(1)
+	for i = 1, 5 do
+		local y = 135 + 30 * sin(t() / 2 + i / 5)
+		draw_face(i * 80, y, 12 + i * 4, 7 + i)
+	end
+end
+</textarea></div>
+      <div class="code" data-slide="7" hidden><div class="codehead"><span class="file">demos/7_over_to_you.lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- over to you: a face that follows the mouse</span></span>
+<span class="line"><span class="ln">2</span><span class="kw">function</span><span class="op"> </span>draw_face<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>e<span class="op"> </span><span class="op">=</span><span class="op"> </span>size<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">3</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">8</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">9</span></span>
+<span class="line"><span class="ln">10</span><span class="kw">function</span><span class="op"> </span>_update<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">11</span><span class="op"> </span><span class="op"> </span>mx<span class="op">,</span><span class="op"> </span>my<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="bi">mouse</span><span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">12</span><span class="kw">end</span></span>
+<span class="line"><span class="ln">13</span></span>
+<span class="line"><span class="ln">14</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">15</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">16</span><span class="op"> </span><span class="op"> </span>draw_face<span class="op">(</span>mx<span class="op">,</span><span class="op"> </span>my<span class="op">,</span><span class="op"> </span><span class="num">20</span><span class="op">,</span><span class="op"> </span><span class="num">10</span><span class="op">)</span></span>
+<span class="line"><span class="ln">17</span><span class="op"> </span><span class="op"> </span><span class="com">-- your ideas go here!</span></span>
+<span class="line"><span class="ln">18</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- over to you: a face that follows the mouse
+function draw_face(x, y, size, col)
+	circfill(x, y, size, col)
+	local e = size / 3
+	circfill(x - e, y - e, e / 2, 0)
+	circfill(x + e, y - e, e / 2, 0)
+	line(x - e, y + e, x + e, y + e, 0)
+end
+
+function _update()
+	mx, my = mouse()
+end
+
+function _draw()
+	cls(1)
+	draw_face(mx, my, 20, 10)
+	-- your ideas go here!
+end
+</textarea></div>
+    </div></div>
+    <div class="cartcol">
+      <div class="window cartwin">
+        <div class="titlebar"><span class="tb-title">demo &mdash; click me, then use the keys</span></div>
+        <div class="cart">
+          <iframe id="cart" src="player.html#s=1" title="Functions and files (lesson demo)" allow="autoplay; fullscreen"></iframe>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="prev" class="px-btn" aria-label="Previous slide">&larr;</button>
+        <span id="count">1 / 7</span>
+        <button id="next" class="px-btn" aria-label="Next slide">&rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="window captions">
+    <div class="titlebar"><span class="tb-title">notes.txt</span></div>
+    <div class="win-body">
+  <section class="caption" data-slide="1" hidden><h2><span class="num">1</span> Defining a function</h2><p>We've been writing functions since Basics 2: <code>_update</code> and <code>_draw</code> are functions, and Picotron calls them for us. In this lesson we write our own, call them ourselves, give them inputs and answers, and finish by splitting a program across two files.</p>
+<p>Lines 2 to 7 draw a face: a yellow circle, two black eyes and a line for a mouth. <code>function draw_face(x, y)</code> gives that work a name, and everything down to the matching <code>end</code> is what it does. A function is a recipe, and writing one down bakes nothing. It just teaches Picotron a new word.</p>
+<p>The work happens when the function is <em>called</em>. <code>draw_face(90, 135)</code> on line 11 runs it with <code>x</code> as 90 and <code>y</code> as 135. Lines 11 to 14 call it four times, so one recipe gives us four faces. The last call works out its <code>y</code> from <code>t()</code>, which is why that face bobs: a function takes any number, including one worked out on the spot.</p>
+<p>The reason to bother shows up when something changes. Bigger eyes means editing one line in <code>draw_face</code>, and every face gets them. With four copies of the drawing code it would be four edits, and sooner or later we'd miss one.</p><div class="try"><h3>Try this</h3><ul><li>Move the whole <code>draw_face</code> function to the very bottom of the file, after <code>_draw</code>. Predict: will it still work? Then put a call, <code>draw_face(240, 40)</code>, on a line of its own at the very top of the file, before the function. What happens now, and what's different about the two places?</li><li>Draw a row of ten faces using a <code>for</code> loop from Basics 3, with only one <code>draw_face</code> call inside it.</li><li>Give the recipe a nose, or ears, or a hat. How many lines did you have to change to give <em>every</em> face one?</li></ul></div></section>
+  <section class="caption" data-slide="2" hidden><h2><span class="num">2</span> Parameters</h2><p>Every face on slide 1 was the same size and colour, because <code>draw_face</code> only had two blanks to fill in: <code>x</code> and <code>y</code>. Here it has four, <code>draw_face(x, y, size, col)</code>. Each name between the brackets is a <strong>parameter</strong>, a blank the caller fills in.</p>
+<p>The values in a call are handed over in order. In <code>draw_face(340, 135, 50, 12)</code> the first becomes <code>x</code>, the second <code>y</code>, the third <code>size</code> and the fourth <code>col</code>. Everything else is worked out from those: the eyes sit a third of <code>size</code> from the middle, and each eye's radius is half of that again.</p>
+<p>Parameters are ordinary variables that the caller fills in, and each call gets a fresh set. That's how four calls draw four different faces.</p>
+<p>Drag the <strong>big</strong> slider. It changes the variable <code>big</code>, which the second call passes as its third value, so inside the function it arrives as <code>size</code>. The function only ever sees the number; it has no idea it came from a variable called <code>big</code>. (Line 6 says <code>local</code>. Slide 4 explains it.)</p><div class="try"><h3>Try this</h3><ul><li>What happens if you leave some numbers out, as in <code>draw_face(240, 135)</code>? Predict, then try it, and read the error message. Which line does it point at, and which name does it complain about?</li><li>Rename <code>big</code> to <code>size</code> on line 2 and in the call on line 15, but don't touch the function. Now there are two things called <code>size</code>. Will the picture change? Predict before you run it, then explain why.</li><li>Add a fifth parameter, <code>happy</code>. When it's <code>true</code>, draw a smile (two short lines that tilt up at the ends will do); otherwise keep the straight mouth.</li></ul></div></section>
+  <section class="caption" data-slide="3" hidden><h2><span class="num">3</span> Return values</h2><p>Click on the cart and move the mouse over it. The line follows the pointer, and the circle turns red when the pointer is inside it.</p>
+<p>So far our functions have <em>done</em> things. A function can also answer a question. <code>dist</code> takes two points and works out how far apart they are, with Pythagoras' theorem from school, and <code>return</code> hands the answer back to whoever called it. Picotron runs the function and puts its answer where the call was, so line 10 stores the distance in <code>d</code> as if we'd typed the number.</p>
+<p>Picotron's own functions do this all the time: <code>sqrt</code> returns a square root, and <code>flr</code> a number rounded down. <code>mouse()</code> returns <em>several</em> values at once: the pointer's x and y, which buttons are down, and two more for the scroll wheel. Line 9 keeps the first two in <code>mx</code> and <code>my</code> and drops the rest.</p>
+<p>With the answer in <code>d</code>, the decision is one comparison: if <code>d</code> is less than the circle's radius, the pointer is inside. Drag the <strong>size</strong> slider and the check grows with the circle, because both use the same variable.</p><div class="try"><h3>Try this</h3><ul><li>What does a function hand back if it never says <code>return</code>? Write one that doesn't, such as <code>function hello() end</code>, then predict and check: <code>print(hello(), 8, 20, 7)</code>. Now try joining it onto some text with <code>..</code>.</li><li>Add a second circle somewhere else that turns red on its own. You can call <code>dist</code> again with different numbers, without writing it again.</li><li>A function can return two answers, like <code>mouse()</code> does: <code>return a, b</code>. Write <code>halfway(x1, y1, x2, y2)</code> that returns the point halfway between two points, catch both answers with <code>hx, hy = halfway(...)</code>, and draw a dot there on the line.</li></ul></div></section>
+  <section class="caption" data-slide="4" hidden><h2><span class="num">4</span> Local and global variables</h2><p>Two counters, both called <code>n</code>, and they behave completely differently.</p>
+<p>The <code>n</code> on line 2 is a <strong>global</strong>. It's made once, when the program starts, and lasts as long as the program runs. Every frame, <code>count_global</code> adds 1 to it and returns it, so it climbs by 60 a second. Any code anywhere can read it or change it.</p>
+<p>The <code>n</code> on line 10 is a <strong>local</strong>. <code>local</code> makes a new variable that belongs to this one function, from that line to the function's <code>end</code>. Each call makes a fresh one, sets it to 0, adds 1 and returns 1, and the local is thrown away when the function finishes. So it says 1, forever.</p>
+<p><code>count_local</code> never touches the global <code>n</code>: inside the function, the local <code>n</code> <em>hides</em> the global one. Without <code>local</code>, a function's variables are globals, shared with the whole program. In a demo this size that's fine. In a bigger game, two functions that both happen to use a name like <code>x</code> or <code>i</code> start changing each other's numbers, and the bug shows up somewhere far from either of them. So I make a function's working variables <code>local</code> out of habit, and keep globals for what the whole game needs to remember, such as the score.</p>
+<p>(Parameters are locals too, which is why slide 2's <code>size</code> couldn't get mixed up with anything outside the function.)</p><div class="try"><h3>Try this</h3><ul><li>Delete the word <code>local</code> from line 10. Predict what <em>both</em> counters will show now, then run it. Can you explain every number you see?</li><li>This bug catches a lot of people. Add this to slide 5 of Basics 4 (the four-way mover) and call <code>draw_grass()</code> at the end of <code>_draw</code>: <code>function draw_grass() for i = 0, 15 do x = i * 32 line(x, 269, x, 255, 11) end end</code>. Hold an arrow key. What happens to the circle, and why? Fix it with one word.</li><li><code>for</code> loops make their counter local all by themselves. Print <code>i</code> <em>after</em> a <code>for i = 1, 3 do ... end</code> loop has finished. What do you get? Why is that a helpful thing for Lua to do?</li></ul></div></section>
+  <section class="caption" data-slide="5" hidden><h2><span class="num">5</span> Functions as values</h2><p>Click on the cart and press O (Z on a keyboard) to step through three pictures, each drawn by its own function.</p>
+<p>A function is a <em>value</em>, like a number or a string. <code>function dots(x, y)</code> really means "make a function and store it in a variable called <code>dots</code>". So anything we can do with a value, we can do with a function, including putting it in a list.</p>
+<p>That's line 19: <code>styles = {dots, rings, cross}</code>. There are no brackets after the names, so nothing is <em>called</em>; the list holds the three functions themselves. In <code>_draw</code>, <code>styles[pick]</code> takes one out of the list and stores it in <code>f</code>, and <code>f(240, 135)</code> calls it, brackets and all. Pressing O changes <code>pick</code>, so a different function gets called. (The <code>%</code> from Basics 3 wraps <code>pick</code> from 3 back round to 1.)</p>
+<p>This is how the methods in Basics 7 work. <code>b:update()</code> calls the ball's <code>update</code>, a function stored in one of its fields, just as these three are stored in a list.</p><div class="try"><h3>Try this</h3><ul><li>What's the difference between <code>{dots, rings, cross}</code> and <code>{dots(), rings(), cross()}</code>? Predict what will go wrong with the second, then try it and read the error.</li><li>Add a fourth picture: write its function and add its name to <code>styles</code>. Which other lines did you have to change? (Think back to Basics 6.)</li><li>Functions can be handed to other functions, too. Write <code>function row(f)</code> that calls <code>f</code> three times at three different <code>x</code> positions, then call <code>row(rings)</code> and <code>row(dots)</code>.</li></ul></div></section>
+  <section class="caption" data-slide="6" hidden><h2><span class="num">6</span> Files and include</h2><p>As a game grows, <code>main.lua</code> gets long, and scrolling through hundreds of lines for the bit we want gets old fast. The fix is a file per idea: the player in one, the enemies in another, the faces in a third. Functions are what make that work, because a function defined in one file can be called from any other.</p>
+<p>We'll move slide 2's <code>draw_face</code> into a file called <code>faces.lua</code>. In the code editor, click the small <strong>+</strong> tab just to the right of the <code>main.lua</code> tab at the top. Picotron opens a <strong>New Tab</strong> window and asks for a name. Type <code>faces</code> and press Enter (or click <strong>Create</strong>). There's no need to type the <code>.lua</code>: Picotron adds it.</p>
+<figure class="shot"><img src="shots/new_tab.png" alt="Naming the new file. It goes in /ram/cart, next to main.lua"><figcaption>Naming the new file. It goes in /ram/cart, next to main.lua</figcaption></figure>
+<p>A new, empty tab called <code>faces.lua</code> appears next to <code>main.lua</code>. Cut the whole <code>draw_face</code> function out of <code>main.lua</code> and paste it in here:</p>
+<figure class="shot"><img src="shots/faces_tab.png" alt="faces.lua in its own tab"><figcaption>faces.lua in its own tab</figcaption></figure>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="com">-- faces.lua: how to draw a face</span></span>
+<span class="line"><span class="ln">2</span><span class="kw">function</span><span class="op"> </span>draw_face<span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op">,</span><span class="op"> </span>y<span class="op">,</span><span class="op"> </span>size<span class="op">,</span><span class="op"> </span>col<span class="op">)</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="kw">local</span><span class="op"> </span>e<span class="op"> </span><span class="op">=</span><span class="op"> </span>size<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">3</span></span>
+<span class="line"><span class="ln">5</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">6</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>e<span class="op"> </span><span class="op">/</span><span class="op"> </span><span class="num">2</span><span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">7</span><span class="op"> </span><span class="op"> </span><span class="bi">line</span><span class="op">(</span>x<span class="op"> </span><span class="op">-</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>x<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">+</span><span class="op"> </span>e<span class="op">,</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
+<span class="line"><span class="ln">8</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>-- faces.lua: how to draw a face
+function draw_face(x, y, size, col)
+	circfill(x, y, size, col)
+	local e = size / 3
+	circfill(x - e, y - e, e / 2, 0)
+	circfill(x + e, y - e, e / 2, 0)
+	line(x - e, y + e, x + e, y + e, 0)
+end
+</textarea></div>
+<p>Now click the <code>main.lua</code> tab and put <code>include(&quot;faces.lua&quot;)</code> at the very top. Press Ctrl + R and the faces are back, drawn by a function that lives in another file. (The code on the left is a new <code>main.lua</code> that draws five faces with a loop; copy it in to see it run.)</p>
+<figure class="shot"><img src="shots/main_tab.png" alt="main.lua includes faces.lua, then calls draw_face as if it lived there"><figcaption>main.lua includes faces.lua, then calls draw_face as if it lived there</figcaption></figure>
+<p><code>include</code> runs another file, top to bottom, at that point in the program. Running <code>faces.lua</code> defines <code>draw_face</code>, so by the time <code>_draw</code> calls it, Picotron knows the word. The file name is looked up from the folder the program runs in, which for the working cartridge is <code>/ram/cart</code>, the same folder the <strong>+</strong> tab put <code>faces.lua</code> in. Saving the cartridge saves every file in it together.</p>
+<p>If you've used PICO-8: Picotron's <code>include</code> is not a copy-and-paste of the file's text. It's an ordinary function that runs the file <em>every time</em> it's called, so include each file once, at the top of <code>main.lua</code>.</p>
+<p>The demo on this page is two files as well: this lesson's cartridge has its own <code>faces.lua</code>, and the code on the left is its <code>main.lua</code>, word for word.</p><div class="try"><h3>Try this</h3><ul><li>Move slide 3's <code>dist</code> into a file of its own, <code>maths.lua</code>, and include that too. Does the order of the two <code>include</code> lines matter? When would it?</li><li>Misspell the name: <code>include(&quot;face.lua&quot;)</code>. Predict what Picotron will do, then run it. Does it tell you what went wrong? Where?</li><li><code>include</code> runs the file every time. Move the <code>include</code> line inside <code>_draw</code>. Does it still work? Leave it running for a few seconds and see what Picotron thinks of that.</li></ul></div></section>
+  <section class="caption" data-slide="7" hidden><h2><span class="num">7</span> Putting it together</h2><p>In this lesson we added:</p>
+<ul><li>functions of our own, defined once and called as often as we like</li><li>parameters, for handing a function its inputs</li><li><code>return</code>, for handing an answer back</li><li><code>local</code>, for keeping a function's working variables to itself</li><li>functions as values, stored in variables and lists</li><li><code>include</code>, for keeping code in more than one file</li></ul>
+<p>The starter is slide 2's face, following the mouse. Copy it into a new cart in Picotron, then pick an idea below. Next, Basics 9 trades circles for characters drawn by hand in the sprite editor.</p><div class="try"><h3>Try this</h3><ul><li>Push the face to the right edge and it goes half off the screen. Write your own <code>clamp(v, lo, hi)</code> that returns <code>v</code>, but never less than <code>lo</code> or more than <code>hi</code>, and use it to keep the whole face on screen. Then compare it with Picotron's <code>mid</code> from Basics 5. Do they always agree?</li><li>A function can call <em>itself</em>. Write <code>branch(x, y, len, a)</code> that draws a line <code>len</code> long at angle <code>a</code> (<code>cos</code> and <code>sin</code> help; Picotron measures angles in <em>turns</em>, so 0.25 is a quarter of the way round), then calls <code>branch</code> twice from the end of that line, each a bit shorter and turned a bit left or right. Grow a tree from the bottom of the screen. What has to stop it calling itself forever?</li><li>Take your bouncing balls from Basics 7 and split them up: everything about one ball (making it, <code>update</code>, <code>draw</code>) into <code>ball.lua</code>, and only the game loop left in <code>main.lua</code>.</li></ul></div></section>
+    </div>
+  </div>
+  <nav class="lessons"><a class="px-btn" href="../basics-07-objects/index.html">&larr; Objects</a> <a class="px-btn" href="../index.html">All lessons</a> <a class="px-btn" href="../basics-09-sprites/index.html">Sprites &rarr;</a></nav>
+  <p class="built">Built with Picotron 0.3.0d.</p>
+</article>
+<script src="../static/lesson.js"></script>
+
+</main>
+<footer class="site">
+  <p>Stuck? Ask in <a href="https://discord.gg/XQStcpPeH4">#help on the Picotron Discord</a>.
+  Questions about Demotron itself: DM <strong>Rybar</strong> there.</p>
+  <p class="small">Picotron is made by Lexaloffle. Demotron is a fan-made school for it.</p>
+</footer>
+</body>
+</html>

@@ -10,7 +10,8 @@
   var prev = document.getElementById("prev");
   var next = document.getElementById("next");
   var captions = Array.prototype.slice.call(document.querySelectorAll("section.caption"));
-  var codes = Array.prototype.slice.call(document.querySelectorAll("div.code"));
+  // the slides' code lives in the code pane; snippets in captions are separate
+  var codes = Array.prototype.slice.call(document.querySelectorAll(".codepane div.code"));
   var total = captions.length;
   var slide = Math.min(Math.max(parseInt(location.hash.slice(1), 10) || 1, 1), total);
 
@@ -77,6 +78,15 @@
     block.querySelector("button.copy").addEventListener("click", function (e) {
       var b = e.currentTarget;
       navigator.clipboard.writeText(block.querySelector("textarea.raw").value).then(function () {
+        b.textContent = "Copied";
+        setTimeout(function () { b.textContent = "Copy"; }, 1500);
+      });
+    });
+  });
+
+  document.querySelectorAll("div.code.snippet button.copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      navigator.clipboard.writeText(b.closest("div.code").querySelector("textarea.raw").value).then(function () {
         b.textContent = "Copied";
         setTimeout(function () { b.textContent = "Copy"; }, 1500);
       });
