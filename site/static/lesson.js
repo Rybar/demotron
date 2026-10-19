@@ -25,7 +25,20 @@
     return h;
   }
 
+  // Only talk to the frame once player.html is really in it. Before its first
+  // load the frame holds a temporary about:blank, and writing a hash there
+  // (Firefox) navigates it to about:blank#s=1 instead: a blank cart, no error.
+  function playerReady() {
+    try {
+      return frame.contentWindow.location.pathname.slice(-11) === "player.html" &&
+             frame.contentDocument.readyState !== "uninitialized";
+    } catch (e) {
+      return false;
+    }
+  }
+
   function tellCart() {
+    if (!playerReady()) return;          // the load handler below sends it
     try {
       frame.contentWindow.location.hash = cartHash();
     } catch (e) {
@@ -33,6 +46,7 @@
       frame.src = "player.html#" + cartHash();
     }
   }
+  frame.addEventListener("load", function () { tellCart(); });
 
   function focusCart() {
     frame.focus();
@@ -101,6 +115,7 @@
     if (e.key === "ArrowLeft" || e.key === "[") { show(slide - 1); e.preventDefault(); }
   });
 
-  frame.src = "player.html#s=" + slide;
+  // the page already points the frame at slide 1; only a deep link changes it
+  if (slide !== 1) frame.src = "player.html#s=" + slide;
   show(slide, true);
 })();

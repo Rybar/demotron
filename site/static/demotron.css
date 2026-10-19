@@ -111,6 +111,8 @@ h1, h2, h3 { text-wrap: balance; }
 h1 { font: 400 clamp(2.6rem, 6.5vw, 4rem)/1 var(--pixel); margin: 0.15em 0 0.15em; letter-spacing: 0; }
 .summary { font-size: 1.12em; margin: 0; }
 .hand { font-size: 1.05rem; font-weight: 700; }
+.kofi { margin: 0.9em 0 0; }
+.kofi .px-btn { font-size: 1.15rem; }
 
 /* ---- lesson heading: a label on the desktop */
 .lesson-head {
