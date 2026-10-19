@@ -1166,7 +1166,17 @@ p8_update_layout();
   window.addEventListener("resize", layout);
   layout();
   var start = document.getElementById("dt_start");
-  start.addEventListener("click", function () { start.remove(); p8_run_cart(); });
+  // p8_run_cart needs the runtime loaded (Module.pico8Boot): wait for it
+  function go() {
+    start.remove();
+    (function boot() {
+      if (typeof Module !== "undefined" && typeof Module.pico8Boot === "function") p8_run_cart();
+      else setTimeout(boot, 50);
+    })();
+  }
+  start.addEventListener("click", go);
+  // an article embed was already clicked on the page: start straight away
+  if (/(^|[#&])go=1/.test(location.hash)) setTimeout(go, 0);
 })();
 </script>
 </body></html>

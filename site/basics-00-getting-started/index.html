@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started · Demotron</title>
+<meta name="description" content="Get Picotron, find your way around it, and run your first program.">
+<link rel="stylesheet" href="../static/demotron.css">
+</head>
+<body class="">
+<header class="site"><a href="../index.html" class="brand">Demotron</a><span class="tag">interactive Picotron lessons</span></header>
+<main>
+
+<article class="lesson article">
+  <h1>Getting started</h1>
+  <p class="summary">Get Picotron, find your way around it, and run your first program.</p>
+  <section class="article-section"><h2>Welcome</h2><p>Picotron is a <em>fantasy workstation</em>: a small, imaginary computer that runs on your real one. It has a 480 × 270 pixel screen, 64 colours, a sound chip, and everything you need to make games built right in: a code editor, a sprite editor, a map editor and a music editor, all inside Picotron itself. You write your games in Lua, a small, friendly programming language.</p>
+<p>That's what makes it such a good place to learn. There's nothing to set up and nothing to install besides Picotron itself. You type some code, press a key, and it runs.</p>
+<p>This first lesson gets you ready for all the others. We'll get Picotron running, find our way around, run a first program, save it, and see what happens when something goes wrong. At the end there's a quick tour of how Demotron's lessons work.</p></section>
+  <section class="article-section"><h2>Getting Picotron</h2><p>Picotron is made by Lexaloffle, the people behind PICO-8. It's a paid program for Windows, Mac and Linux, and you can buy it from <a href="https://www.lexaloffle.com/picotron.php">lexaloffle.com/picotron.php</a>. Once you've paid, you're sent a link to download it, and future updates come included.</p>
+<p>Download the version for your computer, unzip it, and start the Picotron program inside. That's the whole installation.</p>
+<p>Picotron is still growing (it's officially in beta), so new versions arrive from time to time and small things can change. Every Demotron lesson says which version it was made with at the very bottom of the page. If something in a lesson doesn't match what you see, check that first.</p></section>
+  <section class="article-section"><h2>Finding your way around</h2><p>Picotron looks like a tiny computer of its own, and that's exactly how it's meant to feel. Its different parts each live in their own <em>workspace</em>, a full screen of their own, and the icons at the top right of the screen switch between them:</p>
+<figure class="shot"><img src="shots/toolbar.png" alt="The workspace icons at the top right of Picotron&#x27;s screen"><figcaption>The workspace icons at the top right of Picotron's screen</figcaption></figure>
+<p>The first four are the editors you'll use to make things: code, sprites, maps and sound. The desk icon is the desktop, with your files and folders. The little TV is the terminal, where you type commands.</p>
+<p>A couple of keys get you around quickly. <strong>Escape</strong> toggles between the desktop and the terminal. <strong>Alt + Left</strong> and <strong>Alt + Right</strong> (Option on a Mac) step through the workspaces one at a time. You don't need to remember these now; clicking the icons always works.</p></section>
+  <section class="article-section"><h2>Your first program</h2><p>Click the code icon, the <code>()</code> at the top right. This is the code editor, and it's open on a file called <code>main.lua</code>. Picotron always starts your program by running <code>main.lua</code>, so this is where your code goes.</p>
+<figure class="shot"><img src="shots/editor_empty.png" alt="The code editor, empty and ready"><figcaption>The code editor, empty and ready</figcaption></figure>
+<p>Here's a tiny program to try. Click <strong>Copy</strong>, then click inside Picotron's code editor and press <strong>Ctrl + V</strong> to paste it in:</p>
+<div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span><span class="kw">function</span><span class="op"> </span>_draw<span class="op">(</span><span class="op">)</span></span>
+<span class="line"><span class="ln">2</span><span class="op"> </span><span class="op"> </span><span class="bi">cls</span><span class="op">(</span><span class="num">1</span><span class="op">)</span></span>
+<span class="line"><span class="ln">3</span><span class="op"> </span><span class="op"> </span><span class="bi">circfill</span><span class="op">(</span><span class="num">240</span><span class="op">,</span><span class="op"> </span><span class="num">120</span><span class="op">,</span><span class="op"> </span><span class="num">30</span><span class="op">,</span><span class="op"> </span><span class="num">12</span><span class="op">)</span></span>
+<span class="line"><span class="ln">4</span><span class="op"> </span><span class="op"> </span><span class="bi">print</span><span class="op">(</span><span class="str">&quot;hello, picotron!&quot;</span><span class="op">,</span><span class="op"> </span><span class="num">200</span><span class="op">,</span><span class="op"> </span><span class="num">170</span><span class="op">,</span><span class="op"> </span><span class="num">7</span><span class="op">)</span></span>
+<span class="line"><span class="ln">5</span><span class="kw">end</span></span></code></pre><textarea class="raw" hidden>function _draw()
+	cls(1)
+	circfill(240, 120, 30, 12)
+	print(&quot;hello, picotron!&quot;, 200, 170, 7)
+end
+</textarea></div>
+<p>It should look like this. Picotron colours the code as it goes: words that are part of Lua itself, like <code>function</code> and <code>end</code>, in pink; Picotron's own functions in green; numbers and text in blue. (Demotron's code panels use the same colours.)</p>
+<figure class="shot"><img src="shots/editor_pasted.png" alt="The program pasted into the code editor"><figcaption>The program pasted into the code editor</figcaption></figure>
+<p>Now press <strong>Ctrl + R</strong> to run it. Picotron switches to your program, full screen. This is what you should see, and it's the real program, running right here in the page:</p>
+<div class="embed" data-slide="1"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
+<p>That's your first Picotron program! It clears the screen to dark blue, draws a light blue circle, and prints a message under it. Don't worry about how yet; the next lessons take it apart line by line.</p>
+<p>To stop the program, press <strong>Escape</strong>, and then press <strong>Escape</strong> once more to get back to the code editor.</p>
+<p>That's the loop you'll use for every lesson: copy the code, paste it into the code editor, press Ctrl + R, play with it, press Escape, change something, and run it again.</p></section>
+  <section class="article-section"><h2>Saving your work</h2><p>The program you're working on lives in Picotron's memory as the <em>working cartridge</em>. A cartridge is Picotron's word for a project: your code, plus any sprites, maps and sounds that go with it. To keep it, save it to a file.</p>
+<p>Go to the terminal (press Escape from the desktop, or click the TV icon) and type this, then press Enter:</p>
+<pre><code>save hello</code></pre>
+<p>Picotron saves your cartridge as <code>hello.p64</code> and tells you so:</p>
+<figure class="shot"><img src="shots/terminal_save.png" alt="Saving from the terminal"><figcaption>Saving from the terminal</figcaption></figure>
+<p>From then on, <strong>Ctrl + S</strong> saves it again under the same name, so you only need to type <code>save</code> once. Next time you start Picotron, type <code>load hello</code> in the terminal to get it back, and Ctrl + R to run it. Typing <code>ls</code> lists the files in the folder you're in, which is handy when you can't remember what you called something.</p></section>
+  <section class="article-section"><h2>When something goes wrong</h2><p>Sooner or later, a program won't run. That happens to everyone, every day, and Picotron does its best to tell you what went wrong. Here's the same program with one letter missing: <code>circfill</code> has been typed as <code>circfil</code>.</p>
+<figure class="shot"><img src="shots/error.png" alt="A runtime error"><figcaption>A runtime error</figcaption></figure>
+<p>Read it from the left. <code>/ram/cart/main.lua:3</code> means "in <code>main.lua</code>, line 3". Then comes what went wrong: <em>attempt to call a nil value (global 'circfil')</em>. "Call" means running a function, and "nil" is Lua's word for nothing. So Picotron tried to run a function called <code>circfil</code> and found nothing by that name. Fix the spelling, press Ctrl + R again, and you're back.</p>
+<p>Error messages can look scary at first, but they almost always tell you where to look. Find the line it names, read it slowly, and check the spelling, the brackets and the commas.</p></section>
+  <section class="article-section"><h2>How Demotron lessons work</h2><p>Every lesson after this one looks like this:</p>
+<figure class="shot"><img src="shots/demotron_page.png" alt="A Demotron lesson page"><figcaption>A Demotron lesson page</figcaption></figure>
+<ol><li><strong>The code</strong> for the current slide. <strong>Copy</strong> puts it on your clipboard, ready to paste into Picotron.</li><li><strong>The demo</strong>: that same code, running. Click it to start, then click it again whenever you want it to listen to the keyboard. The arrow keys, Z and X are its buttons.</li><li><strong>Sliders</strong> change numbers in the running program while you watch. The highlighted number in the code follows along.</li><li><strong>The arrows</strong> step through the lesson's slides. Each slide has a new idea, a new demo and new code.</li><li><strong>The explanation</strong> for the slide.</li><li><strong>Try this</strong>: things to work out and change. These are the heart of every lesson. Copy the code into Picotron and have a go; there's no single right answer, and breaking things along the way is part of how everyone learns.</li></ol>
+<p>If you get stuck, the Picotron Discord's #help channel is full of friendly people (the link is at the bottom of every page).</p>
+<div class="try"><h3>Try this</h3>
+<ul><li>Before you change anything, predict: which of the numbers in the program decide where the message is printed? Move the message so it sits <em>above</em> the circle instead of below it.</li><li>Delete the very last line, the <code>end</code>, and press Ctrl + R. Picotron points at a line that's after the last line of your program. Read the message and work out why it can't point at the real mistake.</li><li>Picotron has a screenshot key: <strong>Ctrl + 6</strong>. Run your program, take a screenshot, and then find out where Picotron put it on your computer.</li></ul>
+</div></section>
+  <nav class="lessons"><a href="../index.html">All lessons</a> <a href="../basics-02-game-loop/index.html">The game loop &rarr;</a></nav>
+  <p class="built">Built with Picotron 0.3.0d.</p>
+</article>
+<script src="../static/article.js"></script>
+
+</main>
+<footer class="site">
+  <span>Stuck? Ask in <a href="https://discord.gg/XQStcpPeH4">#help on the Picotron Discord</a>. Questions about Demotron itself: DM <strong>Rybar</strong> there.</span>
+  <span>Lessons for <a href="https://www.lexaloffle.com/picotron.php">Picotron</a> by Lexaloffle.</span>
+</footer>
+</body>
+</html>

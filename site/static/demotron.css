@@ -56,9 +56,10 @@ pre.lua { flex: 1; margin: 0; padding: 10px 0; overflow: auto; background: none;
 pre.lua .line { white-space: pre; }
 pre.lua .ln { display: inline-block; width: 3.2em; padding-right: 1em; text-align: right; color: #5f574f; user-select: none; }
 pre.lua .kw { color: #ff77a8; }
-pre.lua .bi { color: #29adff; }
-pre.lua .num { color: #ffa300; }
-pre.lua .str { color: #00e436; }
+/* Picotron's own code editor colours, so the page matches what learners see */
+pre.lua .bi { color: #00e436; }
+pre.lua .num { color: #29adff; }
+pre.lua .str { color: #29adff; }
 pre.lua .com { color: #83769c; }
 pre.lua .op { color: #c2c3c7; }
 pre.lua .line.dim, pre.lua .line.dim span { color: #5f574f; }
@@ -103,3 +104,23 @@ section.track > p { color: var(--muted); margin-top: 0; }
 section.track ol { padding-left: 1.4em; }
 section.track li span { color: var(--muted); margin-left: 0.4em; }
 section.track .soon { font-style: italic; }
+
+/* article lessons: a reading column; screenshots and demos break out wider */
+article.article > h1, article.article > .summary, .article-section, article.article nav.lessons, article.article .built {
+  max-width: 760px; margin-left: auto; margin-right: auto;
+}
+.article-section h2 { font-size: 1.45em; margin: 1.6em 0 0.4em; }
+.article-section h3 { font-size: 1.1em; margin: 1.2em 0 0.3em; }
+figure.shot, div.embed {
+  width: min(960px, calc(100vw - 32px)); margin: 1.4em 0 1.4em 50%; transform: translateX(-50%);
+}
+figure.shot img { display: block; width: 100%; height: auto; image-rendering: pixelated; border-radius: 6px; box-shadow: 0 1px 6px rgba(0,0,0,.18); }
+figure.shot figcaption { color: var(--muted); font-size: 0.9em; margin-top: 0.5em; text-align: center; }
+div.embed { aspect-ratio: 16 / 9; background: #0b0c10; border-radius: 6px; overflow: hidden; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #9a978f; }
+div.embed button { font: 600 1.05em system-ui, sans-serif; padding: 10px 26px; border-radius: 24px; cursor: pointer;
+  border: 2px solid #e8e6e1; background: transparent; color: #e8e6e1; }
+div.embed span { font-size: 0.9em; }
+div.embed.running iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+div.code.snippet { height: auto; margin: 1em 0; }
+div.code.snippet pre.lua { flex: none; }
