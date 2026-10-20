@@ -81,6 +81,8 @@ header.site, footer.site, main {
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 body.wide header.site, body.wide footer.site, body.wide main { max-width: 1480px; }
+/* slideshows: room for a 600px text column beside a 2x demo on big screens */
+body.slides header.site, body.slides footer.site, body.slides main { max-width: 1660px; }
 
 /* the site header is Picotron's toolbar: a cream strip with the menu at left */
 header.site {
@@ -143,7 +145,7 @@ h1 { font: 400 clamp(2.6rem, 6.5vw, 4rem)/1 var(--pixel); margin: 0.15em 0 0.15e
 }
 
 /* ---- slideshow lessons: code window left, demo window right */
-.workbench { display: grid; grid-template-columns: minmax(300px, 1fr) minmax(0, 960px); gap: 20px; justify-content: center; margin: 22px 0 10px; }
+.workbench { display: grid; grid-template-columns: minmax(600px, 1fr) auto; gap: 20px; justify-content: center; margin: 22px 0 10px; }
 .workbench > * { min-width: 0; }
 .codepane { position: relative; min-height: 0; }
 .codepane-inner { position: absolute; inset: 0; display: flex; flex-direction: column; }
@@ -163,7 +165,8 @@ pre.lua .num { color: #29adff; }
 pre.lua .str { color: #29adff; }
 pre.lua .com { color: #83769c; }
 pre.lua .op { color: #c2c3c7; }
-pre.lua .line.dim, pre.lua .line.dim span { color: #5f574f; }
+/* the lines a slide is about: highlighted in the line-number gutter, the code itself untouched */
+pre.lua .line.hl .ln { background: #ffec27; color: #000; }
 pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
 .sliders { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; background: #151c33; }
 .slider { display: grid; grid-template-columns: 6em 1fr 3em; align-items: center; gap: 10px; color: #c2c3c7; font: 14px var(--mono); }
@@ -259,11 +262,20 @@ footer.site a { color: var(--desk-ink); font-weight: 700; }
 footer.site p { margin: 0.4em 0; }
 footer.site .small { font-size: 0.85em; opacity: 0.9; }
 
-/* ---- narrow screens: the demo on top, its code underneath */
-@media (max-width: 1000px) {
+/* ---- slideshow lessons: the slide's text on the left, the demo held on the right */
+.workbench { align-items: start; }
+.workbench .captions { max-width: none; margin: 0; }
+.cartcol { position: sticky; top: 12px; }
+.cartcol .sliders { margin-top: 12px; border-radius: var(--r); }
+.cartcol .sliders[hidden] { display: none; }
+/* the demo's code runs to the edges of the text window, so 52 columns fit beside a 2x demo */
+div.code.slidecode { height: auto; margin: 1.2em calc(-1 * clamp(16px, 4vw, 34px)); border-radius: 0; }
+div.code.slidecode pre.lua { flex: none; max-height: 70vh; font-size: 13px; }
+
+/* ---- narrow screens: the demo on top, the text underneath */
+@media (max-width: 1160px) {
   .workbench { grid-template-columns: minmax(0, 1fr); }
-  .cartcol { order: -1; }
-  .codepane-inner { position: static; }
+  .cartcol { order: -1; position: static; }
   pre.lua { max-height: 60vh; }
 }
 @media (max-width: 600px) {
@@ -288,3 +300,50 @@ h1 .draft-tag { font-size: 0.8rem; }
 /* a code name in a heading or title (# `spr` and `sspr`): code style, so lowercase reads as code */
 h1 code, h2 code, h3 code, .ftitle code { font-family: var(--mono); font-size: 0.72em; font-weight: 700;
   padding: 0.05em 0.25em; vertical-align: 0.08em; }
+/* reference tables beside the demo: use the window's full width and let code in cells wrap */
+.workbench .captions div.table { margin-left: calc(-1 * clamp(16px, 4vw, 34px)); margin-right: calc(-1 * clamp(16px, 4vw, 34px)); }
+.workbench .captions div.table table { font-size: 0.85em; }
+.workbench .captions div.table code { white-space: normal; overflow-wrap: anywhere; }
+
+/* ---- toggles and number boxes beside the sliders (@toggle, @number) */
+.slider.toggle input {
+  appearance: none; -webkit-appearance: none; width: 44px; height: 22px; margin: 0; justify-self: start;
+  border-radius: 11px; background: #5f574f; position: relative; cursor: pointer; transition: background 0.12s;
+}
+.slider.toggle input::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%;
+  background: #fff1e8; transition: left 0.12s;
+}
+.slider.toggle input:checked { background: #ffec27; }
+.slider.toggle input:checked::after { left: 25px; background: #1d2b53; }
+.slider.number { grid-template-columns: 6em 1fr; }
+.stepper { display: inline-flex; align-items: stretch; justify-self: start; }
+.stepper input {
+  width: 4.5em; text-align: center; font: 14px var(--mono); color: #ffec27; background: #0f1424;
+  border: 1px solid #5f574f; border-left: 0; border-right: 0; -moz-appearance: textfield;
+}
+.stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.stepper button {
+  width: 28px; font: 700 16px/1 var(--mono); color: #1d2b53; background: #ffec27; border: 1px solid #5f574f; cursor: pointer;
+}
+.stepper .dec { border-radius: var(--r) 0 0 var(--r); }
+.stepper .inc { border-radius: 0 var(--r) var(--r) 0; }
+
+/* ---- @layout scroll: one long page, every section showing; the demo follows the reading */
+.workbench.scroll .captions section.caption {
+  padding: 1.4em 0 2.2em; border-bottom: 2px dashed var(--pink); position: relative;
+}
+.workbench.scroll .captions section.caption:last-child { border-bottom: 0; }
+.workbench.scroll .captions section.caption::before {
+  content: ""; position: absolute; left: calc(-1 * clamp(16px, 4vw, 34px)); top: 1.2em; bottom: 2em;
+  width: 5px; border-radius: 0 3px 3px 0; background: transparent; transition: background 0.2s;
+}
+.workbench.scroll .captions section.caption.current::before { background: var(--pink); }
+.workbench.scroll p.whole { margin: 1.6em 0 0; font-weight: 700; }
+div.code.excerpt { margin: 0.9em 0; border-radius: var(--r); background: #0f1424; overflow-x: auto; }
+div.code.excerpt pre.lua { margin: 0; padding: 0.7em 1em; font-size: 13px; max-height: none; background: none; }
+@media (max-width: 1160px) {
+  /* the demo stays in view while the text scrolls under it */
+  .workbench.scroll .cartcol { position: sticky; top: 0; z-index: 5; background: var(--desk); padding-bottom: 6px; }
+}
+div.code.excerpt .ln { display: none; }

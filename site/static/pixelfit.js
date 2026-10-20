@@ -8,6 +8,7 @@
 // Each one is also nudged onto whole device pixels so its pixels stay crisp.
 (function () {
   var MAX_CSS = 960;   // the biggest we choose by ourselves: 2x on an ordinary screen
+  var MIN_TEXT = 600;  // a slideshow's text column never gets narrower than this
 
   function dpr() { return window.devicePixelRatio || 1; }
 
@@ -56,8 +57,22 @@
     document.querySelectorAll(".cart").forEach(function (cart) {
       var col = cart.closest(".cartcol") || cart.parentElement;
       var win = cart.closest(".cartwin") || cart;   // the window around it moves with it
+      var bench = cart.closest(".workbench");
+      var s;
+      if (bench && getComputedStyle(bench).gridTemplateColumns.split(" ").length > 1) {
+        // side by side: the demo gets what's left after a readable text column
+        var gap = parseFloat(getComputedStyle(bench).columnGap) || 0;
+        s = size(bench.clientWidth - MIN_TEXT - gap);
+        col.style.width = s.w + "px";
+        cart.style.width = s.w + "px";
+        cart.style.height = s.h + "px";
+        win.style.width = s.w + "px";
+        win.style.marginLeft = "0px";
+        return;
+      }
+      if (bench) col.style.width = "";
       var r = col.getBoundingClientRect();
-      var s = size(r.width);
+      s = size(r.width);
       cart.style.width = s.w + "px";
       cart.style.height = s.h + "px";
       win.style.width = s.w + "px";
