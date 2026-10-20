@@ -57,9 +57,22 @@ a { color: var(--link); text-underline-offset: 3px; }
 a:hover { text-decoration-style: wavy; }
 :focus-visible { outline: 3px dashed var(--yellow); outline-offset: 2px; }
 code, pre { font-family: var(--mono); font-size: 0.9em; }
+/* no ligatures: JetBrains Mono would draw >= as one glyph, and readers type what they see
+   (font-feature-settings, unlike font-variant-ligatures, survives the font shorthand) */
+body { font-feature-settings: "liga" 0, "calt" 0; }
 code { background: var(--paper-2); padding: 0.05em 0.35em; border-radius: 2px; }
 pre { border-radius: var(--r); background: var(--paper-2); padding: 0.8em 1em; overflow-x: auto; }
 pre code { background: none; padding: 0; }
+/* a key to press: [[O]] / [[X]] / [[Ctrl+Z]] in lesson.md; title= gives Picotron's button name */
+kbd.key {
+  font: 700 0.82em/1 var(--mono); display: inline-block; min-width: 1.6em; text-align: center;
+  padding: 0.2em 0.4em 0.15em; border: 1.5px solid var(--line); border-bottom-width: 3px;
+  border-radius: var(--r); background: var(--paper); color: var(--ink); vertical-align: 0.08em;
+}
+kbd.key[title] { cursor: help; }
+.try kbd.key { background: #fff1e8; color: #1d2b53; border-color: #1d2b53; }
+:root[data-theme="dark"] kbd.key { border-color: var(--ink-soft); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) kbd.key { border-color: var(--ink-soft); } }
 
 /* ---- page frame */
 header.site, footer.site, main {
@@ -170,6 +183,7 @@ pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
 .caption h2 .num { border-radius: 3px; display: inline-block; min-width: 1.6em; text-align: center; margin-right: 0.3em; font: 700 0.6em/1.5 var(--mono); vertical-align: 0.2em;
   background: var(--yellow); color: #000; }
 .caption figure.shot { margin: 1.2em 0; }
+.caption h3 { font: 400 1.55rem/1.1 var(--pixel); margin: 1.3em 0 0.3em; }
 
 /* ---- "Try this": a yellow note */
 .try {
@@ -256,3 +270,11 @@ footer.site .small { font-size: 0.85em; opacity: 0.9; }
   .lesson-head { transform: none; }
   header.site .tag { display: none; }
 }
+
+/* ---- tables (| pipe | rows | in lesson.md): reference tables in "Picotron in depth" */
+div.table { overflow-x: auto; margin: 1em 0; }
+div.table table { border-collapse: collapse; width: 100%; font-size: 0.92em; background: var(--paper); }
+div.table th, div.table td { text-align: left; vertical-align: top; padding: 0.35em 0.7em; border: 1px solid var(--line); }
+div.table th { background: var(--pink); color: #1d2b53; font-weight: 700; }
+div.table tr:nth-child(even) td { background: var(--paper-2); }
+div.table code { white-space: nowrap; }
