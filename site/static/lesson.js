@@ -11,7 +11,7 @@
   var next = document.getElementById("next");
   var captions = Array.prototype.slice.call(document.querySelectorAll("section.caption"));
   // each slide's demo code sits in its caption; its sliders sit under the cart
-  var codes = Array.prototype.slice.call(document.querySelectorAll("section.caption div.code.slidecode"));
+  var codes = captions.map(function (c) { return c.querySelector("div.code.slidecode"); });
   var sliderBlocks = {};
   document.querySelectorAll(".cartcol .sliders").forEach(function (b) { sliderBlocks[b.dataset.slide] = b; });
   var textPane = document.querySelector(".captions");
@@ -65,6 +65,7 @@
 
   // a slider moved: show the value in the code and send it to the cart
   function setLive(block, name, value) {
+    if (!block) return;                 // @code hidden: no code to update
     block.querySelectorAll('.live[data-var="' + name + '"]').forEach(function (s) { s.textContent = value; });
   }
 
@@ -176,6 +177,7 @@
   });
 
   codes.forEach(function (block) {
+    if (!block) return;
     block.querySelector("button.copy").addEventListener("click", function (e) {
       var b = e.currentTarget;
       navigator.clipboard.writeText(block.querySelector("textarea.raw").value).then(function () {
