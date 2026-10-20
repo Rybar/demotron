@@ -278,3 +278,9 @@ div.table th, div.table td { text-align: left; vertical-align: top; padding: 0.3
 div.table th { background: var(--pink); color: #1d2b53; font-weight: 700; }
 div.table tr:nth-child(even) td { background: var(--paper-2); }
 div.table code { white-space: nowrap; }
+
+/* ---- a lesson not published yet (DRAFT file): shown only in the local build */
+.draft-tag { display: inline-block; vertical-align: 0.3em; margin-left: 0.4em; padding: 0.15em 0.45em 0.1em;
+  border-radius: 3px; background: var(--yellow); color: #000; font: 700 0.6rem/1 var(--mono);
+  letter-spacing: 0.1em; text-transform: uppercase; }
+h1 .draft-tag { font-size: 0.8rem; }

@@ -22,10 +22,10 @@
   <div class="window paper">
     <div class="titlebar"><span class="tb-title">basics-10-maps.txt</span></div>
     <div class="win-body">
-  <section class="article-section"><h2>Tiles</h2><p>Basics 9 put a character on the screen. Now it needs somewhere to be: a meadow with walls to bump into and coins to find, bigger than the screen.</p>
+  <section class="article-section"><h2>Tiles</h2><p><a class="xref" href="../basics-09-sprites/index.html">Basics 9</a> put a character on the screen. Now it needs somewhere to be: a meadow with walls to bump into and coins to find, bigger than the screen.</p>
 <p>We could draw a whole level with <code>spr</code>, one sprite at a time, but that's hundreds of lines of numbers. Games build their worlds out of <em>tiles</em> instead: a small set of sprites (some grass, a wall, a coin) laid out on a grid, over and over, like a mosaic. Picotron's map editor paints that grid with our sprites, and one line of code, <code>map()</code>, draws all of it.</p>
 <p>In this lesson we paint a level, draw it, find out which tile the character is standing on, stop it walking through walls, and make the screen follow it around a world bigger than the screen.</p>
-<p>We use the chick from Basics 9, plus four sprites made to be tiles: grass in sprite 8, a stone wall in sprite 9, a coin in sprite 10 and a flower in sprite 11. Draw yours in the same places (the first four squares of the sheet's second row), each one filling its whole 16 by 16 square, so that neighbouring tiles meet with no gaps.</p></section>
+<p>We use the chick from <a class="xref" href="../basics-09-sprites/index.html">Basics 9</a>, plus four sprites made to be tiles: grass in sprite 8, a stone wall in sprite 9, a coin in sprite 10 and a flower in sprite 11. Draw yours in the same places (the first four squares of the sheet's second row), each one filling its whole 16 by 16 square, so that neighbouring tiles meet with no gaps.</p></section>
   <section class="article-section"><h2>The map editor</h2><p>Click the map icon at the top right of the screen, the third one along, right after the sprites icon. In a new cartridge the map editor looks like this:</p>
 <figure class="shot"><img src="shots/map_new.png" alt="The map editor in a new cartridge"><figcaption>The map editor in a new cartridge</figcaption></figure>
 <p>The big black area is the map, still empty. Here's the same editor with our level in it:</p>
@@ -38,7 +38,7 @@
 <p>The tile's number is shown as <code>0x0001</code>, which means 1. That's <em>hexadecimal</em>, a way of writing numbers that programmers use a lot, where <code>0x000a</code> means 10 and <code>0x000b</code> means 11. Click the number to switch to ordinary numbers.</p>
 <p>One more thing before painting: the map takes its tile size from sprite 0. Sprite 0 is 16 by 16, so every tile is 16 by 16 pixels, which is another reason to leave sprite 0 just as it is.</p>
 <p>Now paint a level. Fill it with grass first (the rectangle tool makes that quick), then add some walls, a few coins and some flowers. Leave a clear space for the character to start in, around the tile 14 across and 8 down (the pair of numbers at the bottom left shows which tile the mouse is over).</p></section>
-  <section class="article-section"><h2>Drawing the map</h2><p>Here's the walking chick from Basics 9, with one new line:</p>
+  <section class="article-section"><h2>Drawing the map</h2><p>Here's the walking chick from <a class="xref" href="../basics-09-sprites/index.html">Basics 9</a>, with one new line:</p>
 <div class="code snippet"><div class="codehead"><span class="file">Lua</span><button class="copy" type="button">Copy</button></div><pre class="lua"><code><span class="line"><span class="ln">1</span>x<span class="op">,</span><span class="op"> </span>y<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">224</span><span class="op">,</span><span class="op"> </span><span class="num">128</span></span>
 <span class="line"><span class="ln">2</span>left<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="kw">false</span></span>
 <span class="line"><span class="ln">3</span></span>
@@ -149,7 +149,7 @@ function _draw()
 		..&quot;   sprite &quot;..tostr(tile), 4, 2, 7)
 end
 </textarea></div>
-<p>The chick's position is in <em>pixels</em>, but <code>mget</code> wants <em>tiles</em>, so we divide by 16. The <code>\</code> from Basics 3 divides and rounds down, so every pixel from 224 to 239 gives tile 14, and pixel 240 starts tile 15. Adding 8 first means we ask about the chick's <em>middle</em> rather than its top-left corner.</p>
+<p>The chick's position is in <em>pixels</em>, but <code>mget</code> wants <em>tiles</em>, so we divide by 16. The <code>\</code> from <a class="xref" href="../basics-03-numbers/index.html">Basics 3</a> divides and rounds down, so every pixel from 224 to 239 gives tile 14, and pixel 240 starts tile 15. Adding 8 first means we ask about the chick's <em>middle</em> rather than its top-left corner.</p>
 <p>Walk around and watch the numbers at the top. The white square is the tile the code is looking at: it jumps a tile at a time while the chick glides from pixel to pixel. On grass the sprite is 8, on a wall 9, and on a coin 10.</p>
 <div class="embed" data-slide="2"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
 <p>Off the edge of the map there's no tile to report, so <code>mget</code> answers <code>nil</code>, Lua's word for nothing at all. That's why the code prints it with <code>tostr</code>: <code>..</code> can't join <code>nil</code> to text.</p></section>
@@ -239,8 +239,8 @@ function _draw()
 	spr(1, x, y, left)
 end
 </textarea></div>
-<p>There are two small functions here (Basics 8 showed how to write our own). <code>solid(px, py)</code> says whether the pixel at <code>px</code>, <code>py</code> is inside a solid tile. <code>hits_wall(px, py)</code> asks that about all four corners of a 16 by 16 box with its top-left corner at <code>px</code>, <code>py</code>. The corners are <code>+ 15</code> away, not <code>+ 16</code>, because a 16 pixel sprite covers the pixels 0 to 15 from its corner.</p>
-<p>Then <code>_update</code> uses "move, then correct" from Basics 5, with tiles this time. It works out how far the arrows want to move the chick (<code>dx</code> across and <code>dy</code> down), moves it across, and if that puts the box into a wall, steps straight back. Then it does the same for up and down.</p>
+<p>There are two small functions here (<a class="xref" href="../basics-08-functions/index.html">Basics 8</a> showed how to write our own). <code>solid(px, py)</code> says whether the pixel at <code>px</code>, <code>py</code> is inside a solid tile. <code>hits_wall(px, py)</code> asks that about all four corners of a 16 by 16 box with its top-left corner at <code>px</code>, <code>py</code>. The corners are <code>+ 15</code> away, not <code>+ 16</code>, because a 16 pixel sprite covers the pixels 0 to 15 from its corner.</p>
+<p>Then <code>_update</code> uses "move, then correct" from <a class="xref" href="../basics-05-decisions/index.html">Basics 5</a>, with tiles this time. It works out how far the arrows want to move the chick (<code>dx</code> across and <code>dy</code> down), moves it across, and if that puts the box into a wall, steps straight back. Then it does the same for up and down.</p>
 <div class="embed" data-slide="3"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
 <p>Why move across and down separately? Hold two arrows to push diagonally into a wall: the chick slides along the wall instead of stopping dead. Only the direction that hit the wall gets undone, so the other one carries on. If we moved both ways at once and stepped back from both, any diagonal touch of a wall would freeze the chick in place.</p>
 <p>And because the chick moves 2 pixels at a time and starts on a tile, it always ends up flush against the wall, never a pixel short. (A speed of 3 wouldn't line up so neatly. It's worth trying, to see why.)</p></section>
@@ -337,18 +337,19 @@ end
 </textarea></div>
 <p><code>camera(cx, cy)</code> shifts everything drawn after it by <code>cx</code> pixels left and <code>cy</code> pixels up. Think of it as moving a window over the map: the map and the chick are drawn at the same places as before, and we look at a different part. Nothing else in the program changes, because the chick's <code>x</code> and <code>y</code> are still positions on the map.</p>
 <p>To keep the chick in the middle of the screen, the window's top-left corner goes half a screen up and to the left of it: <code>x - 232</code> and <code>y - 127</code>. (232 is half of 480, less half the chick's 16 pixels, and 127 is half of 270, less 8.)</p>
-<p><code>mid</code> (from Basics 5) stops the camera at the map's edges, so we never see past them. It can't go left of 0, or further right than the map's width less one screen: 64 × 16 - 480 = 544. Down works the same way, with the 24 tiles of height. For a map of a different size, put its own width and height in place of 64 and 24.</p>
+<p><code>mid</code> (from <a class="xref" href="../basics-05-decisions/index.html">Basics 5</a>) stops the camera at the map's edges, so we never see past them. It can't go left of 0, or further right than the map's width less one screen: 64 × 16 - 480 = 544. Down works the same way, with the 24 tiles of height. For a map of a different size, put its own width and height in place of 64 and 24.</p>
 <div class="embed" data-slide="4"><button type="button">Run it here</button><span>Runs right here in the page. Click it, then use the keyboard.</span></div>
 <p>Walk up, along to the right past the block of wall, and down to the doorway on the right of the first room. Through it is a second room the screen couldn't show before.</p></section>
-  <section class="article-section"><h2>Putting it together</h2><p>In this lesson we added:</p>
+  <section class="article-section"><h2>Putting it together</h2><p>In this lesson we learned:</p>
 <ul><li>the map editor, where every sprite is also a tile</li><li><code>map()</code>, which draws the whole map</li><li><code>mget</code>, and <code>\ 16</code> to turn a pixel position into a tile</li><li>sprite flags and <code>fget</code>, for marking which tiles are solid</li><li>walls, by moving across and down separately and stepping back</li><li><code>camera</code>, with <code>mid</code> to keep it inside the map</li></ul>
-<p>Sound comes next, in Basics 11 (still being written): the sfx editor, <code>sfx</code> and <code>music</code>.</p>
+<p>In depth 2 has the rest of <code>map</code>: layers, drawing part of a map, tile sizes and the working map. Techniques 6 and 8 take walls and the camera further.</p>
+<p>Next, <a class="xref" href="../basics-11-sound/index.html">Basics 11</a> adds sound: the sfx editor, <code>sfx</code> and <code>music</code>.</p>
 <div class="try"><h3>Try this</h3>
 <ul><li>Make the coins collectable: when the tile under the chick's middle is a coin, use <code>mset(tx, ty, 8)</code> to paint grass over it, and add 1 to a <code>score</code>. Print the score at the top of the screen. Once the camera starts to move, where does your score go, and why? What could you put just before the <code>print</code> to fix it?</li><li>Draw a water tile and give it flag 1 (the second dot). Paint a pond, and make the chick move at half speed while its middle is on a tile with flag 1. Can it still end up flush against the walls?</li><li>Paint a gap in a wall that's exactly one tile wide, and try to walk through it. Why is it so hard to get in? Try checking a smaller box in <code>hits_wall</code> (say from <code>px + 2</code> to <code>px + 13</code>) and walk through again. What do you notice about the walls now?</li><li>A Picotron quirk to discover: in the sprite editor, change sprite 0's size to 8 by 8 and run the map demo again. Before you do, predict what will happen. (Change it back to 16 by 16 afterwards!)</li></ul>
 </div></section>
     </div>
   </div>
-  <nav class="lessons"><a class="px-btn" href="../basics-09-sprites/index.html">&larr; Sprites</a> <a class="px-btn" href="../index.html">All lessons</a></nav>
+  <nav class="lessons"><a class="px-btn" href="../basics-09-sprites/index.html">&larr; Sprites</a> <a class="px-btn" href="../index.html">All lessons</a> <a class="px-btn" href="../basics-11-sound/index.html">Sound &rarr;</a></nav>
   <p class="built">Built with Picotron 0.3.0d.</p>
 </article>
 <script src="../static/article.js"></script>
