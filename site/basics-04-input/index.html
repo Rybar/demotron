@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Input · Demotron</title>
+<title>Input and First Moves · Demotron</title>
 <meta name="description" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Jersey+10&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -18,7 +18,7 @@
 <main>
 
 <article class="lesson">
-  <div class="lesson-head"><p class="crumbs"><a href="../index.html">Demotron</a> / Beginner basics / <span class="lnum">04</span></p><h1>Input</h1></div>
+  <div class="lesson-head"><p class="crumbs"><a href="../index.html">Demotron</a> / Beginner basics / <span class="lnum">04</span></p><h1>Input and First Moves</h1></div>
   <div class="workbench scroll">
     <div class="window captions">
       <div class="titlebar"><span class="tb-title">notes.txt</span></div>
@@ -35,7 +35,7 @@
 <p>We get diagonals for free, since holding up and right runs both lines in the same frame. The boxes on the slide say 181 then, where one arrow gives 255. Slide 5 is about why.</p></section>
   <section class="caption" data-slide="3" id="slide-3"><h2><span class="num">3</span> Speed</h2><div class="code excerpt"><pre class="lua"><code><span class="line"><span class="ln">1</span>speed<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="num">2</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="com">-- pixels a frame</span></span></code></pre></div>
 <p>All four <code>btn</code> lines use speed, so we set every direction with this one line. If we'd typed 2 four times, then the day we missed one, Pip would walk faster left than right and we'd spend a while wondering why.</p>
-<p>Because it's a variable we can change it while the game runs, which is all the slider does. On 6, Pip crosses the meadow in about a second and a quarter.</p></section>
+<p>Because it's a variable we can change it while the game runs, which is all the <strong>speed</strong> slider on the slide does. On 6, Pip crosses the meadow in about a second and a quarter.</p></section>
   <section class="caption" data-slide="4" id="slide-4"><h2><span class="num">4</span> Diagonals</h2><p>Hold right and down and we add 2 to x and 2 to y in the same frame. Those are the two short sides of a triangle, and Pip goes along the long one, the hypotenuse. Pythagoras says it's the square root of 2 × 2 + 2 × 2, which is 2.83 pixels, 1.41 times as far as one arrow. The 1.41 holds at any speed. 6 across and 6 down make 8.49.</p></section>
   <section class="caption" data-slide="5" id="slide-5"><h2><span class="num">5</span> Fixing Diagonals</h2><p>Picotron already knows a diagonal is too fast. Hold two arrows and <code>btn</code> gives 181 for each instead of 255, because it treats the arrows like a round stick pushed into a corner, and 181 is 255 shrunk by about 1.41. Our <code>if</code>s only check yes or no, so they throw that away. We use the numbers instead:</p>
 <div class="code excerpt"><pre class="lua"><code><span class="line"><span class="ln">1</span>dx<span class="op"> </span><span class="op">=</span><span class="op"> </span><span class="op">(</span><span class="bi">btn</span><span class="op">(</span><span class="num">1</span><span class="op">)</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="op">-</span><span class="op"> </span><span class="op">(</span><span class="bi">btn</span><span class="op">(</span><span class="num">0</span><span class="op">)</span><span class="op"> </span><span class="kw">or</span><span class="op"> </span><span class="num">0</span><span class="op">)</span></span>
@@ -54,8 +54,8 @@
 <p>The two delays live in Picotron's memory, and we can change them with <code>poke</code>, which writes a number to an address:</p>
 <div class="code excerpt"><pre class="lua"><code><span class="line"><span class="ln">1</span>poke<span class="op">(</span><span class="num">0x5f5c</span><span class="op">,</span><span class="op"> </span><span class="num">30</span><span class="op">)</span><span class="op"> </span><span class="op"> </span><span class="com">-- frames before the first repeat</span></span>
 <span class="line"><span class="ln">2</span>poke<span class="op">(</span><span class="num">0x5f5d</span><span class="op">,</span><span class="op"> </span><span class="num">8</span><span class="op">)</span><span class="op"> </span><span class="op"> </span><span class="op"> </span><span class="com">-- frames between repeats</span></span></code></pre></div>
-<p>The <strong>first</strong> and <strong>every</strong> sliders under the demo do exactly this. Put 255 in the first address and a held button never repeats, and 0 in either puts back the default.</p></section>
-  <section class="caption" data-slide="8" id="slide-8"><h2><span class="num">8</span> Ask in <code>_update</code></h2><p>Pip reads <kbd class="key" title="Picotron&#x27;s X button: btn(5). X or B on a keyboard">X</kbd> with <code>btnp</code> in <code>_update</code>, and Mossy the frog reads it in <code>_draw</code>. Turn on busy, press <kbd class="key" title="Picotron&#x27;s X button: btn(5). X or B on a keyboard">X</kbd> a few times, and Mossy starts missing presses.</p>
+<p>The <strong>first</strong> and <strong>every</strong> sliders on the slide do exactly this. Put 255 in the first address and a held button never repeats, and 0 in either puts back the default.</p></section>
+  <section class="caption" data-slide="8" id="slide-8"><h2><span class="num">8</span> Ask in <code>_update</code></h2><p>Pip reads <kbd class="key" title="Picotron&#x27;s X button: btn(5). X or B on a keyboard">X</kbd> with <code>btnp</code> in <code>_update</code>, and Mossy the frog reads it in <code>_draw</code>. Switch on <strong>busy</strong>, press <kbd class="key" title="Picotron&#x27;s X button: btn(5). X or B on a keyboard">X</kbd> a few times, and Mossy starts missing presses.</p>
 <p>Busy makes every <code>_draw</code> stall until the frame has used 1.2 frames' worth of time. Picotron does what <a class="xref" href="../basics-02-game-loop/index.html">Basics 2</a> said it would. It keeps <code>_update</code> at 60 a second and skips draws to catch up.</p>
 <p>Picotron works out <code>btnp</code>'s answers fresh at the start of every <code>_update</code>. When two updates run back to back, a press the first one saw is gone by the second, and the draw that finally runs never hears about it. Poor Mossy.</p>
 <p>So we read every button in <code>_update</code>, the mouse too. The mouse would cope in <code>_draw</code>, since <code>mouse()</code> only says what's down right now, but keeping all our input in one place is tidier.</p></section>
@@ -136,7 +136,7 @@ end
       <div class="window cartwin">
         <div class="titlebar"><span class="tb-title">Demo &mdash; click me, then use the keys</span></div>
         <div class="cart">
-          <iframe id="cart" src="player.html#s=1" title="Input (lesson demo)" allow="autoplay; fullscreen"></iframe>
+          <iframe id="cart" src="player.html#s=1" title="Input and First Moves (lesson demo)" allow="autoplay; fullscreen"></iframe>
         </div>
       </div>
       <div class="controls">
@@ -144,15 +144,9 @@ end
         <span id="count">1 / 11</span>
         <button id="next" class="px-btn" aria-label="Next slide">&rarr;</button>
       </div>
-      <div class="sliders" data-slide="3" hidden><label class="slider"><span>speed</span><input type="range" class="ctl" data-var="speed" min="0" max="6" step="0.5" value="2"><output>2</output></label></div>
-      <div class="sliders" data-slide="4" hidden><label class="slider"><span>speed</span><input type="range" class="ctl" data-var="speed" min="0.5" max="6" step="0.5" value="2"><output>2</output></label></div>
-      <div class="sliders" data-slide="5" hidden><label class="slider toggle"><span>fix</span><input type="checkbox" class="ctl" data-var="fix" checked></label></div>
-      <div class="sliders" data-slide="7" hidden><label class="slider"><span>first</span><input type="range" class="ctl" data-var="first" min="1" max="60" step="1" value="30"><output>30</output></label><label class="slider"><span>every</span><input type="range" class="ctl" data-var="every" min="1" max="30" step="1" value="8"><output>8</output></label></div>
-      <div class="sliders" data-slide="8" hidden><label class="slider toggle"><span>busy</span><input type="checkbox" class="ctl" data-var="busy"></label></div>
-      <div class="sliders" data-slide="10" hidden><label class="slider"><span>speed</span><input type="range" class="ctl" data-var="speed" min="0" max="6" step="0.5" value="2"><output>2</output></label></div>
     </div>
   </div>
-  <nav class="lessons"><a class="px-btn" href="../basics-03-numbers/index.html">&larr; Numbers, variables and repeating</a> <a class="px-btn" href="../index.html">All lessons</a></nav>
+  <nav class="lessons"><a class="px-btn" href="../basics-03-numbers/index.html">&larr; Numbers, Variables and Repeating</a> <a class="px-btn" href="../index.html">All lessons</a></nav>
   <p class="built">Built with Picotron 0.3.0d.</p>
 </article>
 <script src="../static/lesson.js"></script>

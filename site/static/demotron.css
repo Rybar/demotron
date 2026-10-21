@@ -125,9 +125,6 @@ header.site .tag { font-size: 0.95rem; color: var(--ink-soft); }
 h1, h2, h3 { text-wrap: balance; }
 h1 { font: 400 clamp(2.6rem, 6.5vw, 4rem)/1 var(--pixel); margin: 0.15em 0 0.15em; letter-spacing: 0; }
 .summary { font-size: 1.12em; margin: 0; }
-.hand { font-size: 1.05rem; font-weight: 700; }
-.kofi { margin: 0.9em 0 0; }
-.kofi .px-btn { font-size: 1.15rem; }
 
 /* ---- lesson heading: a label on the desktop */
 .lesson-head {
@@ -167,11 +164,6 @@ pre.lua .com { color: #83769c; }
 pre.lua .op { color: #c2c3c7; }
 /* the lines a slide is about: highlighted in the line-number gutter, the code itself untouched */
 pre.lua .line.hl .ln { background: #ffec27; color: #000; }
-pre.lua .live { background: #ffec27; color: #000 !important; padding: 0 2px; }
-.sliders { padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; background: #151c33; }
-.slider { display: grid; grid-template-columns: 6em 1fr 3em; align-items: center; gap: 10px; color: #c2c3c7; font: 14px var(--mono); }
-.slider input { accent-color: #ffec27; width: 100%; }
-.slider output { color: #ffec27; text-align: right; }
 
 .cartwin { overflow: hidden; width: fit-content; }   /* shrink-wraps the cart, which pixelfit.js sizes */
 .cart { position: relative; width: 480px; height: 270px; background: #000; }   /* pixelfit.js picks the whole-number scale */
@@ -227,11 +219,13 @@ div.code.snippet pre.lua { flex: none; }
 
 /* ---- index: a welcome window and a desktop of track folders */
 .hero { margin: 28px 0 0; }
-.hero-body { display: flex; align-items: center; gap: clamp(16px, 4vw, 40px); flex-wrap: wrap; }
-.hero-body > div { flex: 1 1 300px; min-width: 0; }
-.mascot.big { animation: bob 2.4s steps(2) infinite; }
-@keyframes bob { 50% { transform: translateY(-4px); } }
-@media (prefers-reduced-motion: reduce) { .mascot.big { animation: none; } }
+.hero-body { display: flex; align-items: center; gap: 4px clamp(16px, 4vw, 40px); flex-wrap: wrap; }
+.hero .summary { flex: 1 1 100%; text-align: center; margin: 0 0 6px; }
+/* the logo (art/demotron-logo.py, 290x50) in whole-number steps so its pixels stay even */
+.hero h1.logo { flex: 1 1 100%; display: flex; justify-content: center; margin: 4px 0 8px; line-height: 0; }
+.hero h1.logo img { image-rendering: pixelated; display: block; width: 870px; max-width: 100%; height: auto; }
+@media (max-width: 960px) { .hero h1.logo img { width: 580px; } }
+@media (max-width: 660px) { .hero h1.logo img { width: 290px; } }
 .desktop { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px; margin: 30px 0 0; align-items: start; }
 /* the first track is the one to start with: it gets the whole width, its files in columns */
 .desktop > .track:first-child { grid-column: 1 / -1; }
@@ -266,8 +260,6 @@ footer.site .small { font-size: 0.85em; opacity: 0.9; }
 .workbench { align-items: start; }
 .workbench .captions { max-width: none; margin: 0; }
 .cartcol { position: sticky; top: 12px; }
-.cartcol .sliders { margin-top: 12px; border-radius: var(--r); }
-.cartcol .sliders[hidden] { display: none; }
 /* the demo's code runs to the edges of the text window, so 52 columns fit beside a 2x demo */
 div.code.slidecode { height: auto; margin: 1.2em calc(-1 * clamp(16px, 4vw, 34px)); border-radius: 0; }
 div.code.slidecode pre.lua { flex: none; max-height: 70vh; font-size: 13px; }
@@ -304,30 +296,6 @@ h1 code, h2 code, h3 code, .ftitle code { font-family: var(--mono); font-size: 0
 .workbench .captions div.table { margin-left: calc(-1 * clamp(16px, 4vw, 34px)); margin-right: calc(-1 * clamp(16px, 4vw, 34px)); }
 .workbench .captions div.table table { font-size: 0.85em; }
 .workbench .captions div.table code { white-space: normal; overflow-wrap: anywhere; }
-
-/* ---- toggles and number boxes beside the sliders (@toggle, @number) */
-.slider.toggle input {
-  appearance: none; -webkit-appearance: none; width: 44px; height: 22px; margin: 0; justify-self: start;
-  border-radius: 11px; background: #5f574f; position: relative; cursor: pointer; transition: background 0.12s;
-}
-.slider.toggle input::after {
-  content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%;
-  background: #fff1e8; transition: left 0.12s;
-}
-.slider.toggle input:checked { background: #ffec27; }
-.slider.toggle input:checked::after { left: 25px; background: #1d2b53; }
-.slider.number { grid-template-columns: 6em 1fr; }
-.stepper { display: inline-flex; align-items: stretch; justify-self: start; }
-.stepper input {
-  width: 4.5em; text-align: center; font: 14px var(--mono); color: #ffec27; background: #0f1424;
-  border: 1px solid #5f574f; border-left: 0; border-right: 0; -moz-appearance: textfield;
-}
-.stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-.stepper button {
-  width: 28px; font: 700 16px/1 var(--mono); color: #1d2b53; background: #ffec27; border: 1px solid #5f574f; cursor: pointer;
-}
-.stepper .dec { border-radius: var(--r) 0 0 var(--r); }
-.stepper .inc { border-radius: 0 var(--r) var(--r) 0; }
 
 /* ---- @layout scroll: one long page, every section showing; the demo follows the reading */
 .workbench.scroll .captions section.caption {
